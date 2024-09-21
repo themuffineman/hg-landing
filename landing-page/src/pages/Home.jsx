@@ -5,6 +5,7 @@ import Iletter from "../assets/images/I_angle(color).png";
 import Gletter from "../assets/images/G_angle(color).png";
 import gift from "../assets/images/gift.png";
 import santStanding from "../assets/images/santa_standing_on_sled.png";
+import torrus from "../assets/images/Torus_array.png";
 import styles from "./components.module.css";
 
 import { Loader } from "../components";
@@ -13,17 +14,35 @@ import { Island, Sky } from "../models";
 const Home = () => {
   return (
     <section className="w-full h-screen relative">
-      <div className="absolute top-5 left-0 right-0 z-10 flex items-center justify-center">
-        <img src={Bletter} className="h-[300px] aspect-auto -mr-10" />
+      <div className="fixed top-20 left-0 right-0 z-10 flex items-center justify-center">
+        {/* <img src={Bletter} className="h-[300px] aspect-auto -mr-10" />
         <img src={Iletter} className="h-[300px] aspect-auto mt-10 " />
-        <img src={Gletter} className="h-[300px] aspect-auto -ml-10" />
+        <img src={Gletter} className="h-[300px] aspect-auto -ml-10" /> */}
+        <div className="flex size-max -gap-28 relative">
+          <div
+            style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
+            className="text-[9rem] absolute top-0 -right-32  font-bold"
+          >
+            Hideous
+          </div>
+          <div
+            style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
+            className="text-[9rem] absolute top-24 -left-5  text-yellow-500 font-bold"
+          >
+            Gifts
+          </div>
+        </div>
         <img
           src={santStanding}
-          className={`h-[150px] aspect-auto absolute top-20 left-20 animation ${styles.float}`}
+          className={`h-[150px] aspect-auto fixed top-20 left-20 ${styles.float}`}
         />
         <img
           src={gift}
-          className={`h-[100px] aspect-auto absolute top-72 right-20 animation ${styles.float}`}
+          className={`h-[100px] aspect-auto fixed top-72 right-20 ${styles.float}`}
+        />
+        <img
+          src={torrus}
+          className={`h-[100px] aspect-auto fixed top-[45rem] left-36 ${styles.float}`}
         />
       </div>
 
@@ -51,15 +70,17 @@ const Home = () => {
           <Island />
         </Suspense>
       </Canvas>
-      <button
-        id="preloader-start--btn"
-        className="btn size-[10rem] text-4xl p-8  transition absolute bottom-28 left-1/2 -translate-x-1/2 [filter:drop-shadow(0px 5px 3px rgba(17,24,55,.21))] bg-gradient-to-r from-pink-500 to-orange-500 "
-      >
-        <div class="btn-background"></div>
-        <div class="btn-container">
-          <span>Start Building</span>
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-5">
+        <div className="w-[30rem] text-black text-center font-bold text-xl">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque neque
+          justo
         </div>
-      </button>
+        <button className="text-white shadow-[8px_8px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] active:shadow-[2px_2px_0px_rgba(0,0,0,0.3)] transform hover:-translate-y-1 active:translate-y-0 transition duration-200 ease-in-out shadow-[#00c6ff] bg-gradient-to-r from-[#00c6ff] to-[#0072ff] size-[10rem] text-2xl rounded-2xl p-5 font-semibold  transition ">
+          <div class="btn-container">
+            <span>Create Now</span>
+          </div>
+        </button>
+      </div>
     </section>
   );
 };
