@@ -1,72 +1,34 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
+import Bletter from "../assets/images/B(black).png";
+import Iletter from "../assets/images/I_angle(color).png";
+import Gletter from "../assets/images/G_angle(color).png";
+import gift from "../assets/images/gift.png";
+import santStanding from "../assets/images/santa_standing_on_sled.png";
+import styles from "./components.module.css";
 
-import sakura from "../assets/sakura.mp3";
-import { HomeInfo, Loader } from "../components";
-import { soundoff, soundon } from "../assets/icons";
-import { Bird, Island, Plane, Sky } from "../models";
+import { Loader } from "../components";
+import { Island, Sky } from "../models";
 
 const Home = () => {
-  const audioRef = useRef(new Audio(sakura));
-  audioRef.current.volume = 0.4;
-  audioRef.current.loop = true;
-
-  const [currentStage, setCurrentStage] = useState(1);
-  const [isRotating, setIsRotating] = useState(false);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
-
-  useEffect(() => {
-    if (isPlayingMusic) {
-      audioRef.current.play();
-    }
-
-    return () => {
-      audioRef.current.pause();
-    };
-  }, [isPlayingMusic]);
-
-  const adjustBiplaneForScreenSize = () => {
-    let screenScale, screenPosition;
-
-    // If screen width is less than 768px, adjust the scale and position
-    if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
-    } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
-    }
-
-    return [screenScale, screenPosition];
-  };
-
-  const adjustIslandForScreenSize = () => {
-    let screenScale, screenPosition;
-
-    if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
-      screenPosition = [0, -6.5, -43.4];
-    } else {
-      screenScale = [1, 1, 1];
-      screenPosition = [0, -6.5, -43.4];
-    }
-
-    return [screenScale, screenPosition];
-  };
-
-  const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
-  const [islandScale, islandPosition] = adjustIslandForScreenSize();
-
   return (
-    <section className='w-full h-screen relative'>
-      <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-        {currentStage && <HomeInfo currentStage={currentStage} />}
+    <section className="w-full h-screen relative">
+      <div className="absolute top-5 left-0 right-0 z-10 flex items-center justify-center">
+        <img src={Bletter} className="h-[300px] aspect-auto -mr-10" />
+        <img src={Iletter} className="h-[300px] aspect-auto mt-10 " />
+        <img src={Gletter} className="h-[300px] aspect-auto -ml-10" />
+        <img
+          src={santStanding}
+          className={`h-[150px] aspect-auto absolute top-20 left-20 animation ${styles.float}`}
+        />
+        <img
+          src={gift}
+          className={`h-[100px] aspect-auto absolute top-72 right-20 animation ${styles.float}`}
+        />
       </div>
 
       <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? "cursor-grabbing" : "cursor-grab"
-        }`}
+        className={`w-full h-screen bg-transparent`}
         camera={{ near: 0.1, far: 1000 }}
       >
         <Suspense fallback={<Loader />}>
@@ -80,38 +42,24 @@ const Home = () => {
             intensity={2}
           />
           <hemisphereLight
-            skyColor='#b1e1ff'
-            groundColor='#000000'
+            skyColor="#b1e1ff"
+            groundColor="#000000"
             intensity={1}
           />
 
-          <Bird />
-          <Sky isRotating={isRotating} />
-          <Island
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-            position={islandPosition}
-            rotation={[0.1, 4.7077, 0]}
-            scale={islandScale}
-          />
-          <Plane
-            isRotating={isRotating}
-            position={biplanePosition}
-            rotation={[0, 20.1, 0]}
-            scale={biplaneScale}
-          />
+          <Sky />
+          <Island />
         </Suspense>
       </Canvas>
-
-      <div className='absolute bottom-2 left-2'>
-        <img
-          src={!isPlayingMusic ? soundoff : soundon}
-          alt='jukebox'
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className='w-10 h-10 cursor-pointer object-contain'
-        />
-      </div>
+      <button
+        id="preloader-start--btn"
+        className="btn size-[10rem] text-4xl p-8  transition absolute bottom-28 left-1/2 -translate-x-1/2 [filter:drop-shadow(0px 5px 3px rgba(17,24,55,.21))] bg-gradient-to-r from-pink-500 to-orange-500 "
+      >
+        <div class="btn-background"></div>
+        <div class="btn-container">
+          <span>Start Building</span>
+        </div>
+      </button>
     </section>
   );
 };

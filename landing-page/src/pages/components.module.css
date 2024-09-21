@@ -1,0 +1,12 @@
+.float {
+  animation: float 3s infinite linear alternate;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translae(-20px);
+  }
+}

@@ -1,27 +1,52 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 import skyScene from "../assets/3d/sky.glb";
 
-// 3D Model from: https://sketchfab.com/3d-models/phoenix-bird-844ba0cf144a413ea92c779f18912042
 export function Sky({ isRotating }) {
   const sky = useGLTF(skyScene);
   const skyRef = useRef();
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Note: Animation names can be found on the Sketchfab website where the 3D model is hosted.
-  // It ensures smooth animations by making the rotation frame rate-independent.
-  // 'delta' represents the time in seconds since the last frame.
+  // Capture mouse movement and set normalized positions
+  const handleMouseMove = (event) => {
+    const x = (event.clientX / window.innerWidth) * 2 - 1; // Horizontal position
+    const y = -(event.clientY / window.innerHeight) * 2 + 1; // Vertical position
+    setMousePos({ x, y });
+  };
+
   useFrame((_, delta) => {
-    if (isRotating) {
-      skyRef.current.rotation.y += 0.25 * delta; // Adjust the rotation speed as needed
+    if (skyRef.current) {
+      // Smoothly interpolate to the target mouse position
+      skyRef.current.rotation.x = THREE.MathUtils.lerp(
+        skyRef.current.rotation.x,
+        mousePos.y * 0.02,
+        0.05 // Adjust this value for easing speed
+      );
+      skyRef.current.rotation.y = THREE.MathUtils.lerp(
+        skyRef.current.rotation.y,
+        mousePos.x * 0.02,
+        0.05 // Adjust this value for easing speed
+      );
+
+      // Optional: Add rotation along the Y-axis if `isRotating` is true
+      if (isRotating) {
+        skyRef.current.rotation.y += 0.1 * delta;
+      }
     }
   });
 
+  // Attach the mousemove event listener
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
+    // Listen for mouse move events on the canvas
     <mesh ref={skyRef}>
-      // use the primitive element when you want to directly embed a complex 3D
-      model or scene
       <primitive object={sky.scene} />
     </mesh>
   );
