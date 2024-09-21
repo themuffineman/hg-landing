@@ -1,9 +1,9 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import './App.css'
-import Navbar from "./components/Navbar";
-import { About, Contact, Home, Projects } from "./pages";
-function App() {
 
+import { Footer, Navbar } from "./components";
+import { About, Contact, Home, Projects } from "./pages";
+
+const App = () => {
   return (
     <main className='bg-slate-300/20'>
       <Router>
@@ -26,7 +26,7 @@ function App() {
         </Routes>
       </Router>
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;
