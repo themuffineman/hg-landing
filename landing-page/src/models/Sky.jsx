@@ -22,13 +22,13 @@ export function Sky({ isRotating }) {
       // Smoothly interpolate to the target mouse position
       skyRef.current.rotation.x = THREE.MathUtils.lerp(
         skyRef.current.rotation.x,
-        mousePos.y * 0.02,
-        0.15 // Adjust this value for easing speed
+        mousePos.y * 0.1,
+        0.2 // Adjust this value for easing speed
       );
       skyRef.current.rotation.y = THREE.MathUtils.lerp(
         skyRef.current.rotation.y,
-        mousePos.x * 0.02,
-        0.15 // Adjust this value for easing speed
+        mousePos.x * 0.1,
+        0.2 // Adjust this value for easing speed
       );
 
       // Optional: Add rotation along the Y-axis if `isRotating` is true

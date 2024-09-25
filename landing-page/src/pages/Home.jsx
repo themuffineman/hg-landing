@@ -10,39 +10,92 @@ import styles from "./components.module.css";
 
 import { Loader } from "../components";
 import { Island, Sky } from "../models";
+import SplineViewer from "../components/Spline";
 
 const Home = () => {
   return (
-    <section className="w-full h-screen relative">
-      <div className="fixed top-20 left-0 right-0 z-10 flex items-center justify-center">
-        {/* <img src={Bletter} className="h-[300px] aspect-auto -mr-10" />
-        <img src={Iletter} className="h-[300px] aspect-auto mt-10 " />
-        <img src={Gletter} className="h-[300px] aspect-auto -ml-10" /> */}
-        <div className="flex size-max -gap-28 relative">
+    <section className="w-full h-screen relative overflow-y-hidden">
+      <SplineViewer url="https://prod.spline.design/yP7VnrtsZgzFa8ZE/scene.splinecode" />
+      <div className="fixed top-10 left-0 right-0 z-10 flex items-center justify-center">
+        <div className="flex items-center justify-center w-full gap-8 absolute top-2 left-1/2 -translate-x-1/2">
           <div
             style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
-            className="text-[9rem] absolute top-0 -right-32  font-bold"
+            className="text-[4rem]   font-bold flex gap-2 items-center justify-center mr-8"
           >
-            Hideous
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
+            >
+              H
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:1s] lowercase`}
+            >
+              I
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:2s] lowercase`}
+            >
+              D
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:3s] lowercase`}
+            >
+              E
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:4s] lowercase`}
+            >
+              O
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:5s] lowercase`}
+            >
+              U
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:6s] lowercase`}
+            >
+              S
+            </div>
           </div>
           <div
             style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
-            className="text-[9rem] absolute top-24 -left-5  text-yellow-500 font-bold"
+            className="text-[4rem]  text-yellow-500 font-bold flex gap-2 items-center justify-center"
           >
-            Gifts
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
+            >
+              G
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:1s] lowercase`}
+            >
+              I
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:2s] lowercase`}
+            >
+              F
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:3s] lowercase`}
+            >
+              T
+            </div>
+            <div
+              className={`w-max ${styles.wave} text-center [animation-delay:4s] lowercase`}
+            >
+              S
+            </div>
           </div>
         </div>
         <img
           src={santStanding}
-          className={`h-[150px] aspect-auto fixed top-20 left-20 ${styles.float}`}
-        />
-        <img
-          src={gift}
-          className={`h-[100px] aspect-auto fixed top-72 right-20 ${styles.float}`}
+          className={`h-[80px] aspect-auto fixed top-[30%] right-20 ${styles.float}`}
         />
         <img
           src={torrus}
-          className={`h-[100px] aspect-auto fixed top-[45rem] left-36 ${styles.float}`}
+          className={`h-[80px] aspect-auto fixed bottom-[10%] left-36 ${styles.float}`}
         />
       </div>
 
@@ -67,18 +120,16 @@ const Home = () => {
           />
 
           <Sky />
-          <Island />
+          {/* <Island /> */}
         </Suspense>
       </Canvas>
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-5">
+      <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-5 z-50">
         <div className="w-[30rem] text-black text-center font-bold text-xl">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque neque
           justo
         </div>
-        <button className="text-white shadow-[8px_8px_0px_rgba(0,0,0,0.3)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] active:shadow-[2px_2px_0px_rgba(0,0,0,0.3)] transform hover:-translate-y-1 active:translate-y-0 transition duration-200 ease-in-out shadow-[#00c6ff] bg-gradient-to-r from-[#00c6ff] to-[#0072ff] size-[10rem] text-2xl rounded-2xl p-5 font-semibold  transition ">
-          <div class="btn-container">
-            <span>Create Now</span>
-          </div>
+        <button className={`${styles.pushable}`}>
+          <span className={`${styles.front}`}>Create Yours Today</span>
         </button>
       </div>
     </section>
