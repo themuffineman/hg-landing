@@ -51,3 +51,7 @@ export function Sky({ isRotating }) {
     </mesh>
   );
 }
+
+
+
+

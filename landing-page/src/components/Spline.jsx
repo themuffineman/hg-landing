@@ -27,10 +27,7 @@ const SplineViewer = ({ url }) => {
   }, [url]);
 
   return (
-    <div
-      className="w-[30rem] h-[30rem] absolute top-[50%] -translate-y-1/2 left-[50%] -translate-x-1/2 z-40"
-      id="spline-viewer-container"
-    ></div>
+    <div className="w-[30rem] h-[30rem]" id="spline-viewer-container"></div>
   );
 };
 
