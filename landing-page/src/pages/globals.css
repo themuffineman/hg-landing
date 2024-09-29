@@ -14,6 +14,7 @@ html,
 
 .card-container {
   width: 100%;
+  height: 100%;
 }
 
 .card-img {
@@ -25,6 +26,7 @@ html,
 .card-section {
   position: relative;
   width: 100vw;
+  height: 100vh;
 }
 
 .card {

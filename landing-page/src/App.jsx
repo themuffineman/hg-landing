@@ -10,8 +10,8 @@ import { Home } from "./pages";
 const App = () => {
   return (
     <ReactLenis root>
-      <main className="bg-slate-300/20">
-        <div className="absolute inset-0 z-0">
+      <main className=" w-full h-full">
+        <div className="absolute inset-0 z-0 h-full w-full">
           <Canvas className="w-full h-full" camera={{ near: 0.1, far: 1000 }}>
             <Suspense fallback={<Loader />}>
               <directionalLight position={[1, 1, 1]} intensity={2} />
