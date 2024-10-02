@@ -3,7 +3,7 @@ import "../pages/globals.css";
 
 const Card = forwardRef(({ id, frontSrc, frontAlt, backText }, ref) => {
   return (
-    <div className="card" id={id} ref={ref}>
+    <div className="card border" id={id} ref={ref}>
       <div className="card-wrapper">
         <div className="flip-card-inner">
           <div className="flip-card-front">

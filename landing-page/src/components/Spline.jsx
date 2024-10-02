@@ -12,7 +12,8 @@ const SplineViewer = ({ url }) => {
       script.onload = () => {
         const viewer = document.createElement("spline-viewer");
         viewer.setAttribute("url", url);
-        document.getElementById("spline-viewer-container").appendChild(viewer);
+        const div = document.getElementById("spline-viewer-container").appendChild(viewer);
+        
       };
 
       document.body.appendChild(script);
@@ -27,7 +28,7 @@ const SplineViewer = ({ url }) => {
   }, [url]);
 
   return (
-    <div className="w-[30rem] h-[30rem]" id="spline-viewer-container"></div>
+    <div className="w-[50rem] h-[40rem]" id="spline-viewer-container"></div>
   );
 };
 

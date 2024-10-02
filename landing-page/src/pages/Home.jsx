@@ -178,7 +178,7 @@ const Home = () => {
             />
           </div>
         </div>
-        <SplineViewer url="https://prod.spline.design/yP7VnrtsZgzFa8ZE/scene.splinecode" />
+        <SplineViewer url="https://prod.spline.design/tUDAMqnPmdbyI0Or/scene.splinecode" />
         <div className="flex flex-col items-center gap-5 z-50">
           <div className="w-[30rem] text-black text-center font-bold text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -196,7 +196,7 @@ const Home = () => {
                 id={`card-${index + 1}`}
                 frontSrc="/card-front.png"
                 frontAlt="Card Image"
-                backText="Your card details appear here"
+                backText={`How it works ${index+1}`}
                 ref={(el) => (cardRefs.current[index] = el)}
               />
             ))}
