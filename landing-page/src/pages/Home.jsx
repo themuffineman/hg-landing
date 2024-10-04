@@ -93,10 +93,10 @@ const Home = () => {
     };
   }, []);
   return (
-    <section className="w-full absolute top-0 h-screen main-body ">
+    <section className="w-full h-full">
       <div className="relative z-10  h-full flex flex-col gap-5 items-center pt-5">
         <div className=" flex items-center justify-center">
-          <div className="flex items-center justify-center w-full gap-8 ">
+          <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
               style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
               className="text-[4rem] font-bold flex gap-2 items-center justify-center"
@@ -179,17 +179,20 @@ const Home = () => {
           </div>
         </div>
         <SplineViewer url="https://prod.spline.design/tUDAMqnPmdbyI0Or/scene.splinecode" />
-        <div className="flex flex-col items-center gap-5 z-50">
+        <div className="flex flex-col items-center gap-10 z-50">
           <div className="w-[30rem] text-black text-center font-bold text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            neque justo
+            neque justo.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </div>
           <button className={`${styles.pushable}`}>
             <span className={`${styles.front}`}>Create Yours Today</span>
           </button>
         </div>
+        <h2 className="text-5xl tracking-tight mt-20 text-black font-light">
+          How to create yours
+        </h2>
         <div className="card-container" ref={container}>
-          <section className="cards card-section">
+          <section className="cards card-section ">
             {[...Array(4)].map((_, index) => (
               <Card
                 key={index}

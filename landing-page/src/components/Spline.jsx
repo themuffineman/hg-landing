@@ -12,8 +12,11 @@ const SplineViewer = ({ url }) => {
       script.onload = () => {
         const viewer = document.createElement("spline-viewer");
         viewer.setAttribute("url", url);
-        const div = document.getElementById("spline-viewer-container").appendChild(viewer);
-        
+        const splineElement = document
+          .getElementById("spline-viewer-container")
+          .appendChild(viewer);
+        splineElement.style.width = "100%";
+        splineElement.style.height = "100%";
       };
 
       document.body.appendChild(script);
@@ -28,7 +31,7 @@ const SplineViewer = ({ url }) => {
   }, [url]);
 
   return (
-    <div className="w-[50rem] h-[40rem]" id="spline-viewer-container"></div>
+    <div className="w-[30rem] h-[20rem]" id="spline-viewer-container"></div>
   );
 };
 
