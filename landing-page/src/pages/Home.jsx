@@ -29,7 +29,7 @@ const Home = () => {
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
         pin: true,
-        pinSpacing: true,
+        pinSpacing: false,
       });
 
       // spread cards

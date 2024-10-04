@@ -46,7 +46,7 @@ export function Sky({ isRotating }) {
 
   return (
     // Listen for mouse move events on the canvas
-    <mesh ref={skyRef}>
+    <mesh ref={skyRef} >
       <primitive object={sky.scene} />
     </mesh>
   );

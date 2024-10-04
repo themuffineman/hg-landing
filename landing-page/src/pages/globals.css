@@ -5,10 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* html, */
+html,
 .main-body {
   width: 100%;
-  height: 600vh;
+  height: 500vh;
   font-family: "Instrument Serif";
 }
 
