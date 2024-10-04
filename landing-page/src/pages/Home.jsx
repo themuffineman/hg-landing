@@ -188,7 +188,7 @@ const Home = () => {
             <span className={`${styles.front}`}>Create Yours Today</span>
           </button>
         </div>
-        <h2 className="text-5xl tracking-tight mt-20 text-black font-light">
+        <h2 className="text-5xl tracking-tight mt-20 text-black font-semibold">
           How to create yours
         </h2>
         <div className="card-container" ref={container}>
