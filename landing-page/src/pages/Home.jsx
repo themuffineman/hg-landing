@@ -94,12 +94,12 @@ const Home = () => {
   }, []);
   return (
     <section className="w-full h-full">
-      <div className="relative z-10  h-full flex flex-col gap-5 items-center pt-5">
+      <div className="relative z-10  h-full flex flex-col gap-4 items-center pt-5">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
               style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
-              className="text-[4rem] font-bold flex gap-2 items-center justify-center"
+              className="text-[3rem] md:text-[4rem] font-bold flex gap-2 items-center justify-center"
             >
               <div
                 className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
@@ -139,7 +139,7 @@ const Home = () => {
             </div>
             <div
               style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
-              className="text-[4rem]  text-yellow-500 font-bold flex gap-2 items-center justify-center"
+              className=" text-[3rem] md:text-[4rem]  text-yellow-500 font-bold flex gap-2 items-center justify-center"
             >
               <div
                 className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
@@ -180,7 +180,7 @@ const Home = () => {
         </div>
         <SplineViewer url="https://prod.spline.design/tUDAMqnPmdbyI0Or/scene.splinecode" />
         <div className="flex flex-col items-center gap-10 z-50">
-          <div className="w-[30rem] text-black text-center font-bold text-xl">
+          <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
             neque justo.  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </div>
@@ -188,7 +188,7 @@ const Home = () => {
             <span className={`${styles.front}`}>Create Yours Today</span>
           </button>
         </div>
-        <h2 className="text-5xl tracking-tight mt-20 text-black font-semibold">
+        <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
           How to create yours
         </h2>
         <div className="card-container" ref={container}>

@@ -15,7 +15,7 @@ const App = () => {
         <div className=" h-full] absolute inset-0 -z-10 w-full">
           <Canvas className="h-full w-full"
               camera={{
-                position: [0, 0, 0],
+                position: [10, 10, 10],
                 fov: 200,
                 aspect: window.innerWidth / window.innerHeight,
                 near: 0.1,

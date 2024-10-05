@@ -12,6 +12,9 @@ const SplineViewer = ({ url }) => {
       script.onload = () => {
         const viewer = document.createElement("spline-viewer");
         viewer.setAttribute("url", url);
+        viewer.setAttribute("loading-anim-type", "spinner-big-dark")
+        viewer.style.width = "100%"
+        viewer.style.height = "100%"
         const splineElement = document
           .getElementById("spline-viewer-container")
           .appendChild(viewer);
@@ -31,7 +34,7 @@ const SplineViewer = ({ url }) => {
   }, [url]);
 
   return (
-    <div className="w-[30rem] h-[20rem]" id="spline-viewer-container"></div>
+    <div className="w-full h-[60rem] lg:h-[25rem]" id="spline-viewer-container"></div>
   );
 };
 
