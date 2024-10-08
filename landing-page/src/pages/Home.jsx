@@ -1,97 +1,12 @@
 import santStanding from "../assets/images/santa_standing_on_sled.png";
 import torrus from "../assets/images/Torus_array.png";
 import styles from "./components.module.css";
-import { Suspense, useEffect, useRef } from "react";
-import Card from "../components/Cards";
-import SplineViewer from "../components/Spline";
-import ReactLenis from "@studio-freight/react-lenis";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import "./globals.css";
-
-gsap.registerPlugin(ScrollTrigger);
+import { Canvas } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import {Gift} from "../models/Gift"
 
 const Home = () => {
-  const container = useRef(null);
-  const cardRefs = useRef([]);
-
-  useGSAP(
-    () => {
-      const cards = cardRefs.current;
-      const totalScrollHeight = window.innerHeight * 3;
-      const positions = [14, 38, 62, 86];
-      const rotations = [-15, -7.5, 7.5, 15];
-
-      // pin cards section
-      ScrollTrigger.create({
-        trigger: container.current.querySelector(".cards"),
-        start: "top top",
-        end: () => `+=${totalScrollHeight}`,
-        pin: true,
-        pinSpacing: false,
-      });
-
-      // spread cards
-      cards.forEach((card, index) => {
-        gsap.to(card, {
-          left: `${positions[index]}%`,
-          rotation: `${rotations[index]}`,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container.current.querySelector(".cards"),
-            start: "top top",
-            end: () => `+=${window.innerHeight}`,
-            scrub: 0.5,
-            id: `spread-${index}`,
-          },
-        });
-      });
-
-      // flip cards and reset rotation with staggered effect
-      cards.forEach((card, index) => {
-        const frontEl = card.querySelector(".flip-card-front");
-        const backEl = card.querySelector(".flip-card-back");
-
-        const staggerOffset = index * 0.05;
-        const startOffset = 1 / 3 + staggerOffset;
-        const endOffset = 2 / 3 + staggerOffset;
-
-        ScrollTrigger.create({
-          trigger: container.current.querySelector(".cards"),
-          start: "top top",
-          end: () => `+=${totalScrollHeight}`,
-          scrub: 1,
-          id: `rotate-flip-${index}`,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            if (progress >= startOffset && progress <= endOffset) {
-              const animationProgress = (progress - startOffset) / (1 / 3);
-              const frontRotation = -180 * animationProgress;
-              const backRotation = 180 - 180 * animationProgress;
-              const cardRotation = rotations[index] * (1 - animationProgress);
-
-              gsap.to(frontEl, { rotateY: frontRotation, ease: "power1.out" });
-              gsap.to(backEl, { rotateY: backRotation, ease: "power1.out" });
-              gsap.to(card, {
-                xPercent: -50,
-                yPercent: -50,
-                rotate: cardRotation,
-                ease: "power1.out",
-              });
-            }
-          },
-        });
-      });
-    },
-    { scope: container }
-  );
-
-  useEffect(() => {
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+ 
   return (
     <section className="w-full h-full">
       <div className="relative z-10  h-full flex flex-col gap-4 items-center pt-5">
@@ -178,7 +93,11 @@ const Home = () => {
             />
           </div>
         </div>
-        <SplineViewer url="https://prod.spline.design/tUDAMqnPmdbyI0Or/scene.splinecode" />
+        <div className="w-full">
+          <Canvas style={{height: "20rem"}}>
+            <Gift/>
+          </Canvas>
+        </div>
         <div className="flex flex-col items-center gap-10 z-50">
           <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
@@ -191,20 +110,6 @@ const Home = () => {
         <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
           How to create yours
         </h2>
-        <div className="card-container" ref={container}>
-          <section className="cards card-section ">
-            {[...Array(4)].map((_, index) => (
-              <Card
-                key={index}
-                id={`card-${index + 1}`}
-                frontSrc="/card-front.png"
-                frontAlt="Card Image"
-                backText={`How it works ${index+1}`}
-                ref={(el) => (cardRefs.current[index] = el)}
-              />
-            ))}
-          </section>
-        </div>
       </div>
     </section>
   );

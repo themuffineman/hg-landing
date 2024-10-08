@@ -1,2 +1,2 @@
 export { Sky } from "./Sky";
-export { Island } from "./Gift";
+export { Gift } from "./Gift";

@@ -3,7 +3,7 @@ import ReactLenis from "@studio-freight/react-lenis";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Loader } from "./components";
-import { Island, Sky } from "./models";
+import { Sky } from "./models";
 import "./pages/globals.css";
 
 
