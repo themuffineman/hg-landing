@@ -16,70 +16,42 @@ const Home = () => {
 
   const container = useRef(null);
   const cardRefs = useRef([]);
-  useGSAP(
-    () => {
-      const cards = cardRefs.current;
+
+  useEffect(() => {
+    const positions = [14, 38, 62, 86]; // Initial positions
+    const rotations = [-15, -7.5, 7.5, 15]; // Initial rotations
+    
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const totalScrollHeight = window.innerHeight * 3;
-      const positions = [14, 38, 62, 86];
-      const rotations = [-15, -7.5, 7.5, 15];
-      // pin cards section
-      ScrollTrigger.create({
-        trigger: container.current.querySelector(".cards"),
-        start: "top top",
-        end: () => `+=${totalScrollHeight}`,
-        pin: true,
-        pinSpacing: false,
+      const scrollProgress = scrollTop / totalScrollHeight;
+  
+      cardRefs.current.forEach((card, index) => {
+        const leftPosition = positions[index];
+        const rotation = rotations[index];
+        
+        // Limit the spread range and rotation effect to be much smaller (e.g., max shift by 10%).
+        const maxSpreadAmount = 5; // Reduce spread to only 5% from initial position
+        const maxRotationAmount = rotation * 0.2; // Smaller rotation change (20% of original)
+  
+        // Calculate the new position and rotation with a smaller range
+        const cardProgress = Math.min(scrollProgress * 100, 100);
+        const spreadLeft = leftPosition + (cardProgress * maxSpreadAmount) / 100;
+        const spreadRotation = rotation - (cardProgress * maxRotationAmount) / 100;
+  
+        // Apply styles with reduced spreading and rotation
+        card.style.left = `${spreadLeft}%`;
+        card.style.transform = `rotate(${spreadRotation}deg)`;
       });
-      // spread cards
-      cards.forEach((card, index) => {
-        gsap.to(card, {
-          left: `${positions[index]}%`,
-          rotation: `${rotations[index]}`,
-          ease: "none",
-          scrollTrigger: {
-            trigger: container.current.querySelector(".cards"),
-            start: "top top",
-            end: () => `+=${window.innerHeight}`,
-            scrub: 0.5,
-            id: `spread-${index}`,
-          },
-        });
-      });
-      // flip cards and reset rotation with staggered effect
-      cards.forEach((card, index) => {
-        const frontEl = card.querySelector(".flip-card-front");
-        const backEl = card.querySelector(".flip-card-back");
-        const staggerOffset = index * 0.05;
-        const startOffset = 1 / 3 + staggerOffset;
-        const endOffset = 2 / 3 + staggerOffset;
-        ScrollTrigger.create({
-          trigger: container.current.querySelector(".cards"),
-          start: "top top",
-          end: () => `+=${totalScrollHeight}`,
-          scrub: 1,
-          id: `rotate-flip-${index}`,
-          onUpdate: (self) => {
-            const progress = self.progress;
-            if (progress >= startOffset && progress <= endOffset) {
-              const animationProgress = (progress - startOffset) / (1 / 3);
-              const frontRotation = -180 * animationProgress;
-              const backRotation = 180 - 180 * animationProgress;
-              const cardRotation = rotations[index] * (1 - animationProgress);
-              gsap.to(frontEl, { rotateY: frontRotation, ease: "power1.out" });
-              gsap.to(backEl, { rotateY: backRotation, ease: "power1.out" });
-              gsap.to(card, {
-                xPercent: -50,
-                yPercent: -50,
-                rotate: cardRotation,
-                ease: "power1.out",
-              });
-            }
-          },
-        });
-      });
-    },
-    { scope: container }
-  );
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   useEffect(() => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());

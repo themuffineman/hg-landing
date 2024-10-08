@@ -12,7 +12,7 @@ import { Home } from "./pages";
 const App = () => {
   return (
     <ReactLenis root>
-        <main className=" w-full h-screen main-body overflow-y-hidden">
+        <main className=" w-full h-screen main-body">
           <div className=" h-full absolute inset-0 -z-10 w-full">
             <Canvas 
                 camera={{
