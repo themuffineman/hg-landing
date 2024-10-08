@@ -12,19 +12,19 @@ body {
   overflow: hidden; /* Prevent body overflow */
   font-family: "Instrument Serif";
 }
-.parent-container,
-.main-body {
+.parent-container {
   width: 100vw; /* Full viewport width */
   height: 100vh; /* Full viewport height */
   overflow: hidden; /* Hides overflow from the parent */
   position: relative; /* Keeps child positioned correctly */
   font-family: "Instrument Serif";
 }
-.scrollable-content {
+.main-body {
   width: 100%; /* Full width of the parent */
-  height: 100%; /* Full height of the parent */
+  height: 500vh; /* Full height of the parent */
   overflow-y: scroll; /* Allows vertical scrolling */
   padding-right: 15px; /* Optional padding to prevent scrollbar overlap */
+  font-family: "Instrument Serif";
 }
 .card-container {
   width: 100%;
