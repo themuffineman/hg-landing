@@ -89,7 +89,7 @@ const Home = () => {
 
   return (
     <section className="w-full h-full scrollable-content main-body">
-      <div className="relative z-10  h-full flex flex-col gap-4 items-center pt-5">
+      <div className="relative  h-full flex flex-col gap-4 items-center pt-5">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div

@@ -21,14 +21,14 @@ body {
 }
 .main-body {
   width: 100%; /* Full width of the parent */
-  height: 500vh; /* Full height of the parent */
+  height: 100%; /* Full height of the parent */
   overflow-y: scroll; /* Allows vertical scrolling */
   padding-right: 15px; /* Optional padding to prevent scrollbar overlap */
   font-family: "Instrument Serif";
 }
 .card-container {
   width: 100%;
-  height: 100%;
+  height: 500vh;
   background-color: transparent;
 }
 
@@ -41,7 +41,7 @@ body {
 .card-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: transparent;
 }
 
