@@ -7,28 +7,27 @@
 }
 html,
 body {
-  height: 100%; /* Full height for the body */
-  width: 100%; /* Full width for the body */
-  overflow: hidden; /* Prevent body overflow */
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   font-family: "Instrument Serif";
 }
 .parent-container {
-  width: 100vw; /* Full viewport width */
-  height: 100vh; /* Full viewport height */
-  overflow: hidden; /* Hides overflow from the parent */
-  position: relative; /* Keeps child positioned correctly */
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
   font-family: "Instrument Serif";
 }
 .main-body {
-  width: 100%; /* Full width of the parent */
-  height: 500vh; /* Full height of the parent */
-  overflow-y: scroll; /* Allows vertical scrolling */
-  padding-right: 15px; /* Optional padding to prevent scrollbar overlap */
+  width: 100%;
+  height: 500vh;
+  overflow-y: scroll;
+  padding-right: 15px;
   font-family: "Instrument Serif";
 }
 .card-container {
   width: 100%;
-  height: 500vh;
   background-color: transparent;
 }
 
@@ -36,13 +35,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.card-section {
-  position: relative;
-  width: 100%;
-  height: 500vh;
-  background-color: transparent;
 }
 
 .card {

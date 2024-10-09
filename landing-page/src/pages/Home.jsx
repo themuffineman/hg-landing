@@ -20,17 +20,19 @@ const Home = () => {
   useGSAP(
     () => {
       const cards = cardRefs.current;
-      const totalScrollHeight = 900 * 3;
+      const totalScrollHeight = window.innerHeight * 3;
       const positions = [14, 38, 62, 86];
       const rotations = [-15, -7.5, 7.5, 15];
+
       // pin cards section
       ScrollTrigger.create({
-        trigger: container.current.querySelector("section.cards.cards-section"),
+        trigger: container.current.querySelector(".cards"),
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
         pin: true,
         pinSpacing: true,
       });
+
       // spread cards
       cards.forEach((card, index) => {
         gsap.to(card, {
@@ -38,28 +40,26 @@ const Home = () => {
           rotation: `${rotations[index]}`,
           ease: "none",
           scrollTrigger: {
-            trigger: container.current.querySelector(
-              "section.cards.cards-section"
-            ),
+            trigger: container.current.querySelector(".cards"),
             start: "top top",
-            end: () => `+=${container.current.offsetHeight}`,
+            end: () => `+=${window.innerHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
-            // scroller: container.current,
           },
         });
       });
+
       // flip cards and reset rotation with staggered effect
       cards.forEach((card, index) => {
         const frontEl = card.querySelector(".flip-card-front");
         const backEl = card.querySelector(".flip-card-back");
+
         const staggerOffset = index * 0.05;
         const startOffset = 1 / 3 + staggerOffset;
         const endOffset = 2 / 3 + staggerOffset;
+
         ScrollTrigger.create({
-          trigger: container.current.querySelector(
-            "section.cards.card-section"
-          ),
+          trigger: container.current.querySelector(".cards"),
           start: "top top",
           end: () => `+=${totalScrollHeight}`,
           scrub: 1,
@@ -71,6 +71,7 @@ const Home = () => {
               const frontRotation = -180 * animationProgress;
               const backRotation = 180 - 180 * animationProgress;
               const cardRotation = rotations[index] * (1 - animationProgress);
+
               gsap.to(frontEl, { rotateY: frontRotation, ease: "power1.out" });
               gsap.to(backEl, { rotateY: backRotation, ease: "power1.out" });
               gsap.to(card, {
@@ -86,6 +87,7 @@ const Home = () => {
     },
     { scope: container }
   );
+
   useEffect(() => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -93,11 +95,8 @@ const Home = () => {
   }, []);
 
   return (
-    <section
-      className="w-full h-full scrollable-content main-body"
-      ref={container}
-    >
-      <div className="relative h-screen flex flex-col gap-4 items-center pt-32">
+    <div className="w-full h-full main-body" ref={container}>
+      <section className="relative h-screen flex flex-col gap-4 items-center pt-32">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
@@ -183,10 +182,10 @@ const Home = () => {
         </div>
         <div className="w-full">
           <Canvas
-            style={{ height: "20rem" }}
+            style={{ height: "25rem" }}
             camera={{
               position: [0, 0, 0],
-              fov: 90,
+              fov: 75,
               near: 0.1,
               far: 1000,
             }}
@@ -207,8 +206,8 @@ const Home = () => {
         <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
           How to create yours
         </h2>
-      </div>
-      <section className="cards card-section">
+      </section>
+      <section className="cards">
         {[...Array(4)].map((_, index) => (
           <Card
             key={index}
@@ -220,7 +219,7 @@ const Home = () => {
           />
         ))}
       </section>
-    </section>
+    </div>
   );
 };
 

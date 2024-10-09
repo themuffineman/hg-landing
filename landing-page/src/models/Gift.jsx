@@ -44,7 +44,7 @@ export function Gift() {
     const originalRotationY = islandRef.current?.rotation?.y || 0;
 
     if (islandRef.current) {
-      islandRef.current.rotation.x = Math.min(Math.PI, scrollY * 0.004); // Limit rotation to 180 degrees
+      islandRef.current.rotation.x = Math.min(Math.PI * 2, scrollY * 0.015); // Limit rotation to 180 degrees
 
       islandRef.current.rotation.y += 0.5 * delta;
       if (hovered) {
