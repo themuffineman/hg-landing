@@ -97,7 +97,7 @@ const Home = () => {
       className="w-full h-full scrollable-content main-body"
       ref={container}
     >
-      <div className="relative h-screen flex flex-col gap-4 items-center pt-5">
+      <div className="relative h-screen flex flex-col gap-4 items-center pt-32">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
@@ -182,7 +182,15 @@ const Home = () => {
           </div>
         </div>
         <div className="w-full">
-          <Canvas style={{ height: "20rem" }}>
+          <Canvas
+            style={{ height: "20rem" }}
+            camera={{
+              position: [0, 0, 0],
+              fov: 90,
+              near: 0.1,
+              far: 1000,
+            }}
+          >
             <Gift />
           </Canvas>
         </div>
@@ -200,20 +208,18 @@ const Home = () => {
           How to create yours
         </h2>
       </div>
-      <div className="card-container">
-        <section className="cards card-section">
-          {[...Array(4)].map((_, index) => (
-            <Card
-              key={index}
-              id={`card-${index + 1}`}
-              frontSrc="/card-front.png"
-              frontAlt="Card Image"
-              backText={`How it works ${index + 1}`}
-              ref={(el) => (cardRefs.current[index] = el)}
-            />
-          ))}
-        </section>
-      </div>
+      <section className="cards card-section">
+        {[...Array(4)].map((_, index) => (
+          <Card
+            key={index}
+            id={`card-${index + 1}`}
+            frontSrc="/card-front.png"
+            frontAlt="Card Image"
+            backText={`How it works ${index + 1}`}
+            ref={(el) => (cardRefs.current[index] = el)}
+          />
+        ))}
+      </section>
     </section>
   );
 };

@@ -8,7 +8,6 @@ import islandScene from "../assets/3d/giftbox.glb";
 
 export function Gift() {
   const islandRef = useRef();
-  const scrollRef = useRef(); // Ref for the scrollable container
   const [hovered, setHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
@@ -45,7 +44,7 @@ export function Gift() {
     const originalRotationY = islandRef.current?.rotation?.y || 0;
 
     if (islandRef.current) {
-      islandRef.current.rotation.x = Math.min(Math.PI / 2, scrollY * 0.001); // Limit rotation to 90 degrees
+      islandRef.current.rotation.x = Math.min(Math.PI, scrollY * 0.004); // Limit rotation to 180 degrees
 
       islandRef.current.rotation.y += 0.5 * delta;
       if (hovered) {
@@ -67,7 +66,7 @@ export function Gift() {
 
   const { camera } = useThree();
   useEffect(() => {
-    camera.position.set(9, 2, 3); // Set camera to an isometric angle
+    camera.position.set(9, 5, 3); // Set camera to an isometric angle
     camera.lookAt(0, 0, 0); // Make sure the camera focuses on the center of the model
   }, [camera]); // This will update the camera position once on mount
 
