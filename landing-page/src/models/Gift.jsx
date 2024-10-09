@@ -8,8 +8,10 @@ import islandScene from "../assets/3d/giftbox.glb";
 
 export function Gift() {
   const islandRef = useRef();
+  const scrollRef = useRef(); // Ref for the scrollable container
   const [hovered, setHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [scrollY, setScrollY] = useState(0);
 
   const handleMouseMove = (event) => {
     const x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -22,12 +24,29 @@ export function Gift() {
 
   const { nodes, materials } = useGLTF(islandScene);
 
+  useEffect(() => {
+    const scrollContainer = document.querySelector(".main-body"); // Use query selector to find the element
+    if (!scrollContainer) {
+      return;
+    }
+    const handleScroll = () => {
+      setScrollY(scrollContainer.scrollTop); // Get the current scroll position of the element
+    };
+
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useFrame((_, delta) => {
     const dampingFactor = 0.1;
     const originalRotationX = 0;
     const originalRotationY = islandRef.current?.rotation?.y || 0;
 
     if (islandRef.current) {
+      islandRef.current.rotation.x = Math.min(Math.PI / 2, scrollY * 0.001); // Limit rotation to 90 degrees
+
       islandRef.current.rotation.y += 0.5 * delta;
       if (hovered) {
         const targetX = mousePos.y * 0.4;
@@ -51,7 +70,6 @@ export function Gift() {
     camera.position.set(9, 2, 3); // Set camera to an isometric angle
     camera.lookAt(0, 0, 0); // Make sure the camera focuses on the center of the model
   }, [camera]); // This will update the camera position once on mount
-
 
   return (
     <>

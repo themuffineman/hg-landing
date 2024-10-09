@@ -20,16 +20,16 @@ const Home = () => {
   useGSAP(
     () => {
       const cards = cardRefs.current;
-      const totalScrollHeight = window.innerHeight * 3;
+      const totalScrollHeight = 900 * 3;
       const positions = [14, 38, 62, 86];
       const rotations = [-15, -7.5, 7.5, 15];
       // pin cards section
       ScrollTrigger.create({
-        trigger: container.current.querySelector(".cards"),
+        trigger: container.current.querySelector("section.cards.cards-section"),
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
         pin: true,
-        pinSpacing: false,
+        pinSpacing: true,
       });
       // spread cards
       cards.forEach((card, index) => {
@@ -38,11 +38,14 @@ const Home = () => {
           rotation: `${rotations[index]}`,
           ease: "none",
           scrollTrigger: {
-            trigger: container.current.querySelector(".cards"),
+            trigger: container.current.querySelector(
+              "section.cards.cards-section"
+            ),
             start: "top top",
-            end: () => `+=${window.innerHeight}`,
+            end: () => `+=${container.current.offsetHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
+            // scroller: container.current,
           },
         });
       });
@@ -54,7 +57,9 @@ const Home = () => {
         const startOffset = 1 / 3 + staggerOffset;
         const endOffset = 2 / 3 + staggerOffset;
         ScrollTrigger.create({
-          trigger: container.current.querySelector(".cards"),
+          trigger: container.current.querySelector(
+            "section.cards.card-section"
+          ),
           start: "top top",
           end: () => `+=${totalScrollHeight}`,
           scrub: 1,
@@ -88,8 +93,11 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="w-full h-full scrollable-content main-body">
-      <div className="relative  h-full flex flex-col gap-4 items-center pt-5">
+    <section
+      className="w-full h-full scrollable-content main-body"
+      ref={container}
+    >
+      <div className="relative h-screen flex flex-col gap-4 items-center pt-5">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
@@ -192,7 +200,7 @@ const Home = () => {
           How to create yours
         </h2>
       </div>
-      <div className="card-container" ref={container}>
+      <div className="card-container">
         <section className="cards card-section">
           {[...Array(4)].map((_, index) => (
             <Card
