@@ -16,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
   const container = useRef(null);
   const cardRefs = useRef([]);
+  const POV = window.innerWidth < 500 ? 100 : 75;
 
   useGSAP(
     () => {
@@ -96,7 +97,7 @@ const Home = () => {
 
   return (
     <div className="w-full h-full main-body" ref={container}>
-      <section className="relative h-screen flex flex-col gap-4 items-center pt-32">
+      <section className="relative h-screen flex flex-col gap-4 items-center pt-20">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
@@ -185,7 +186,7 @@ const Home = () => {
             style={{ height: "25rem" }}
             camera={{
               position: [0, 0, 0],
-              fov: 75,
+              fov: POV,
               near: 0.1,
               far: 1000,
             }}
