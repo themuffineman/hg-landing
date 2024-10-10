@@ -99,130 +99,132 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full h-full main-body flex flex-col" ref={container}>
-      <section className="relative h-screen flex flex-col gap-4 items-center">
-        <div className=" flex items-center justify-center">
-          <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
-            <div
-              style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
-              className="text-[3rem] md:text-[4rem] font-bold flex gap-2 items-center justify-center"
-            >
+    <div className="main-body" ref={container}>
+      <div className="h-[510vh]">
+        <section className="relative h-[100vh] flex flex-col gap-4 items-center">
+          <div className=" flex items-center justify-center">
+            <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
               <div
-                className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
+                style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
+                className="text-[3rem] md:text-[4rem] font-bold flex gap-2 items-center justify-center"
               >
-                H
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
+                >
+                  H
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:1s] lowercase`}
+                >
+                  I
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:2s] lowercase`}
+                >
+                  D
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:3s] lowercase`}
+                >
+                  E
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:4s] lowercase`}
+                >
+                  O
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:5s] lowercase`}
+                >
+                  U
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:6s] lowercase`}
+                >
+                  S
+                </div>
               </div>
               <div
-                className={`w-max ${styles.wave} text-center [animation-delay:1s] lowercase`}
+                style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
+                className=" text-[3rem] md:text-[4rem]  text-yellow-500 font-bold flex gap-2 items-center justify-center"
               >
-                I
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
+                >
+                  G
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:1s] lowercase`}
+                >
+                  I
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:2s] lowercase`}
+                >
+                  F
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:3s] lowercase`}
+                >
+                  T
+                </div>
+                <div
+                  className={`w-max ${styles.wave} text-center [animation-delay:4s] lowercase`}
+                >
+                  S
+                </div>
               </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:2s] lowercase`}
-              >
-                D
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:3s] lowercase`}
-              >
-                E
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:4s] lowercase`}
-              >
-                O
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:5s] lowercase`}
-              >
-                U
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:6s] lowercase`}
-              >
-                S
-              </div>
-            </div>
-            <div
-              style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
-              className=" text-[3rem] md:text-[4rem]  text-yellow-500 font-bold flex gap-2 items-center justify-center"
-            >
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:0s]`}
-              >
-                G
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:1s] lowercase`}
-              >
-                I
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:2s] lowercase`}
-              >
-                F
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:3s] lowercase`}
-              >
-                T
-              </div>
-              <div
-                className={`w-max ${styles.wave} text-center [animation-delay:4s] lowercase`}
-              >
-                S
-              </div>
-            </div>
 
-            <img
-              src={santStanding}
-              className={`h-[80px] aspect-auto fixed top-[30%] right-20 ${styles.float}`}
-            />
-            <img
-              src={torrus}
-              className={`h-[80px] aspect-auto fixed bottom-[10%] left-36 ${styles.float}`}
-            />
+              <img
+                src={santStanding}
+                className={`h-[80px] aspect-auto fixed top-[30%] right-20 ${styles.float}`}
+              />
+              <img
+                src={torrus}
+                className={`h-[80px] aspect-auto fixed bottom-[10%] left-36 ${styles.float}`}
+              />
+            </div>
           </div>
-        </div>
-        <div className="w-full">
-          <Canvas
-            style={{ height: "25rem" }}
-            camera={{
-              position: [0, 0, 0],
-              fov: POV,
-              near: 0.1,
-              far: 1000,
-            }}
-          >
-            <Gift />
-          </Canvas>
-        </div>
-        <div className="flex flex-col items-center gap-10 z-50">
-          <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            neque justo. Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit.
+          <div className="w-full">
+            <Canvas
+              style={{ height: "25rem" }}
+              camera={{
+                position: [0, 0, 0],
+                fov: POV,
+                near: 0.1,
+                far: 1000,
+              }}
+            >
+              <Gift />
+            </Canvas>
           </div>
-          <button className={`${styles.pushable}`}>
-            <span className={`${styles.front}`}>Create Yours Today</span>
-          </button>
-        </div>
-        <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
-          How to create yours
-        </h2>
-      </section>
-      <section className="cards">
-        {[...Array(4)].map((_, index) => (
-          <Card
-            key={index}
-            id={`card-${index + 1}`}
-            frontSrc="/card-front.png"
-            frontAlt="Card Image"
-            backText={`How it works ${index + 1}`}
-            ref={(el) => (cardRefs.current[index] = el)}
-          />
-        ))}
-      </section>
+          <div className="flex flex-col items-center gap-10 z-50">
+            <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+              neque justo. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit.
+            </div>
+            <button className={`${styles.pushable}`}>
+              <span className={`${styles.front}`}>Create Yours Today</span>
+            </button>
+          </div>
+          <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
+            How to create yours
+          </h2>
+        </section>
+        <section className="cards">
+          {[...Array(4)].map((_, index) => (
+            <Card
+              key={index}
+              id={`card-${index + 1}`}
+              frontSrc="/card-front.png"
+              frontAlt="Card Image"
+              backText={`How it works ${index + 1}`}
+              ref={(el) => (cardRefs.current[index] = el)}
+            />
+          ))}
+        </section>
+      </div>
     </div>
   );
 };
