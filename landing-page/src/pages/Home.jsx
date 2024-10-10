@@ -31,7 +31,8 @@ const Home = () => {
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
         pin: true,
-        pinSpacing: true,
+        pinSpacing: false,
+        scroller: document.querySelector(".main-body"),
       });
 
       // spread cards
@@ -46,6 +47,7 @@ const Home = () => {
             end: () => `+=${window.innerHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
+            scroller: document.querySelector(".main-body"),
           },
         });
       });
@@ -65,6 +67,7 @@ const Home = () => {
           end: () => `+=${totalScrollHeight}`,
           scrub: 1,
           id: `rotate-flip-${index}`,
+          scroller: document.querySelector(".main-body"),
           onUpdate: (self) => {
             const progress = self.progress;
             if (progress >= startOffset && progress <= endOffset) {
@@ -96,8 +99,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full h-full main-body" ref={container}>
-      <section className="relative h-screen flex flex-col gap-4 items-center pt-20">
+    <div className="w-full h-full main-body flex flex-col" ref={container}>
+      <section className="relative h-screen flex flex-col gap-4 items-center">
         <div className=" flex items-center justify-center">
           <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
             <div
