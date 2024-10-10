@@ -7,7 +7,7 @@ import Card from "../components/Cards";
 import { Gift } from "../models/Gift";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import ReactLenis from "@studio-freight/react-lenis";
+import Lenis from "@studio-freight/lenis";
 import { useGSAP } from "@gsap/react";
 import "./globals.css";
 
@@ -100,9 +100,9 @@ const Home = () => {
 
   return (
     <div className="main-body" ref={container}>
-      <div className="h-[510vh]">
-        <section className="relative h-[100vh] flex flex-col gap-4 items-center">
-          <div className=" flex items-center justify-center">
+      <div className="h-[520vh]">
+        <section className="relative h-max min-h-[100vh] flex flex-col gap-4 items-center">
+          <div className=" pt-10 flex items-center justify-center">
             <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
               <div
                 style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
