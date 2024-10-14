@@ -13,7 +13,7 @@ const Card = forwardRef(({ id, frontSrc, frontAlt, backText }, ref) => {
               height={500}
               alt={frontAlt}
               className="card-img"
-            />
+            /> 
           </div>
           <div className="flip-card-back">
             <p>{backText}</p>
