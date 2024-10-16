@@ -34,6 +34,9 @@ body {
   .main-body {
     height: 400vh;
   }
+  .cards{
+    height: 400vh;
+  }
   /* .card {
     transform: translateX(-50%, -50%);
     width: 240px;
