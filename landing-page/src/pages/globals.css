@@ -32,10 +32,13 @@ body {
 }
 @media (max-width: 767px) {
   .main-body {
-    height: 400vh;
+    height: 100vh;
   }
-  .cards{
-    height: 400vh;
+  .cards {
+    height: 250vh;
+    display: flex;
+    align-items: flex-start;
+    justify-items: center;
   }
   /* .card {
     transform: translateX(-50%, -50%);
