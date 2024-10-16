@@ -114,7 +114,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="main-body" ref={container}>
+    <div className="main-body " ref={container}>
       <div className="h-[520vh]">
         <section className="relative h-max min-h-[100vh] flex flex-col gap-4 items-center">
           <div className=" pt-10 flex items-center justify-center">
