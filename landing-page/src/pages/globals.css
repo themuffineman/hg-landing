@@ -32,7 +32,7 @@ body {
 }
 @media (max-width: 767px) {
   .main-body {
-    height: 200vh;
+    height: 400vh;
   }
   /* .card {
     transform: translateX(-50%, -50%);
