@@ -31,7 +31,7 @@ body {
   position: relative;
 }
 @media (max-width: 767px) {
-  .cards {
+  .main-body {
     height: 200vh;
   }
   /* .card {
