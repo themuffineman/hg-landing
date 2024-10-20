@@ -59,7 +59,7 @@ const Home = () => {
           trigger: container.current.querySelector(".cards"),
           start: "top top",
           end: () => `+=${window.innerHeight}`,
-          scrub: 2,
+          scrub: 1,
           id: `spread-${index}`,
           scroller: document.querySelector(".main-body"),
         },
