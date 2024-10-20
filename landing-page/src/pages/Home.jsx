@@ -54,7 +54,7 @@ const Home = () => {
       {
         top: `${positions[index]*2}%`,
         rotation: `${rotations[index]}`,
-        ease: "none",
+        ease: "power2.out",
         scrollTrigger: {
           trigger: container.current.querySelector(".cards"),
           start: "top top",
