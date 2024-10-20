@@ -13,7 +13,7 @@ body {
   font-family: "Instrument Serif";
 }
 .parent-container {
-  width: 00vw;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   position: relative;
@@ -34,12 +34,12 @@ body {
   .main-body {
     height: 100vh;
   }
-  .cards {
+  /* .cards {
     height: 250vh;
     display: flex;
     align-items: flex-start;
     justify-items: center;
-  }
+  } */
   /* .card {
     transform: translateX(-50%, -50%);
     width: 240px;
