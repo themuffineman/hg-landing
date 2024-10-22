@@ -80,7 +80,7 @@ const Home = () => {
           trigger: container.current.querySelector(".cards"),
           start: "top top",
           end: () => `+=${totalScrollHeight}`,
-          scrub: 1,
+          scrub: 2,
           id: `rotate-flip-${index}`,
           scroller: document.querySelector(".main-body"),
           onUpdate: (self) => {
