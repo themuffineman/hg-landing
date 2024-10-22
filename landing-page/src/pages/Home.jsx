@@ -21,7 +21,7 @@ const Home = () => {
     () => {
       const cards = cardRefs.current;
       const totalScrollHeight = window.innerHeight * 3;
-      const positions = [14, 38, 62, 86]
+      const positions = [14, 38, 62, 86];
       const rotations = [-15, -7.5, 7.5, 15];
 
       // pin cards section
@@ -36,34 +36,34 @@ const Home = () => {
 
       // spread cards
       cards.forEach((card, index) => {
-      const params = window.innerWidth > 800? 
-      {
-        left: `${positions[index]}%`,
-        rotation: `${rotations[index]}`,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container.current.querySelector(".cards"),
-          start: "top top",
-          end: () => `+=${window.innerHeight}`,
-          scrub: 0.5,
-          id: `spread-${index}`,
-          scroller: document.querySelector(".main-body"),
-        },
-      } 
-      : 
-      {
-        top: `${positions[index]*2}%`,
-        rotation: `${rotations[index]}`,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current.querySelector(".cards"),
-          start: "top top",
-          end: () => `+=${window.innerHeight}`,
-          scrub: 1,
-          id: `spread-${index}`,
-          scroller: document.querySelector(".main-body"),
-        },
-      }
+        const params =
+          window.innerWidth > 800
+            ? {
+                left: `${positions[index]}%`,
+                rotation: `${rotations[index]}`,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: container.current.querySelector(".cards"),
+                  start: "top top",
+                  end: () => `+=${window.innerHeight}`,
+                  scrub: 0.5,
+                  id: `spread-${index}`,
+                  scroller: document.querySelector(".main-body"),
+                },
+              }
+            : {
+                top: `${positions[index] * 2}%`,
+                rotation: `${rotations[index]}`,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: container.current.querySelector(".cards"),
+                  start: "top top",
+                  end: () => `+=${window.innerHeight}`,
+                  scrub: 2,
+                  id: `spread-${index}`,
+                  scroller: document.querySelector(".main-body"),
+                },
+              };
         gsap.to(card, params);
       });
 
