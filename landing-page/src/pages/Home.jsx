@@ -29,7 +29,7 @@ const Home = () => {
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
       pin: true,
-      pinSpacing: false,
+      pinSpacing: true,
       scroller: document.querySelector(".main-body"),
     });
 
@@ -58,7 +58,7 @@ const Home = () => {
                 trigger: container.current.querySelector(".cards"),
                 start: "top top",
                 end: () => `+=${window.innerHeight}`,
-                scrub: true,
+                scrub: 10,
                 id: `spread-${index}`,
                 scroller: document.querySelector(".main-body"),
               },
@@ -104,7 +104,7 @@ const Home = () => {
         trigger: container.current.querySelector(".cards"),
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
-        scrub: window.innerWidth > 800 ? 2 : true,
+        scrub: window.innerWidth > 800 ? 2 : 10,
         id: `rotate-flip-${index}`,
         scroller: document.querySelector(".main-body"),
         onUpdate: (self) => {
