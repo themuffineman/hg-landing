@@ -17,96 +17,107 @@ const Home = () => {
   const container = useRef(null);
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
-  useGSAP(
-    () => {
-      const cards = cardRefs.current;
-      const totalScrollHeight = window.innerHeight * 3;
-      const positions = [14, 38, 62, 86];
-      const rotations = [-15, -7.5, 7.5, 15];
+  useGSAP(() => {
+    const cards = cardRefs.current;
+    const totalScrollHeight = window.innerHeight * 3;
+    const positions = [14, 38, 62, 86];
+    const rotations = [-15, -7.5, 7.5, 15];
 
-      // pin cards section
-      ScrollTrigger.create({
-        trigger: container.current.querySelector(".cards"),
-        start: "top top",
-        end: () => `+=${totalScrollHeight}`,
-        pin: true,
-        pinSpacing: false,
-        scroller: document.querySelector(".main-body"),
+    // pin cards section
+    ScrollTrigger.create({
+      trigger: container.current.querySelector(".cards"),
+      start: "top top",
+      end: () => `+=${totalScrollHeight}`,
+      pin: true,
+      pinSpacing: false,
+      scroller: document.querySelector(".main-body"),
+    });
+
+    // spread cards
+    cards.forEach((card, index) => {
+      const params =
+        window.innerWidth > 800
+          ? {
+              left: `${positions[index]}%`,
+              rotation: `${rotations[index]}`,
+              ease: "none",
+              scrollTrigger: {
+                trigger: container.current.querySelector(".cards"),
+                start: "top top",
+                end: () => `+=${window.innerHeight}`,
+                scrub: 0.5,
+                id: `spread-${index}`,
+                scroller: document.querySelector(".main-body"),
+              },
+            }
+          : {
+              top: `${positions[index] * 2}%`,
+              rotation: `${rotations[index]}`,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: container.current.querySelector(".cards"),
+                start: "top top",
+                end: () => `+=${window.innerHeight}`,
+                scrub: true,
+                id: `spread-${index}`,
+                scroller: document.querySelector(".main-body"),
+              },
+            };
+      gsap.to(card, params);
+    });
+    // rotate cards
+    cards.forEach((card, index) => {
+      const frontEl = card.querySelector(".flip-card-front");
+      const backEl = card.querySelector(".flip-card-back");
+
+      const staggerOffset = index * 0.05;
+      const startOffset = 1 / 3 + staggerOffset;
+      const endOffset = 2 / 3 + staggerOffset;
+      const totalDuration = endOffset - startOffset;
+
+      // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
+      const timeline = gsap.timeline({ paused: true });
+
+      timeline.to(frontEl, {
+        rotateY: -180,
+        ease: "power1.out",
+        duration: totalDuration,
       });
-
-      // spread cards
-      cards.forEach((card, index) => {
-        const params =
-          window.innerWidth > 800
-            ? {
-                left: `${positions[index]}%`,
-                rotation: `${rotations[index]}`,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: container.current.querySelector(".cards"),
-                  start: "top top",
-                  end: () => `+=${window.innerHeight}`,
-                  scrub: 0.5,
-                  id: `spread-${index}`,
-                  scroller: document.querySelector(".main-body"),
-                },
-              }
-            : {
-                top: `${positions[index] * 2}%`,
-                rotation: `${rotations[index]}`,
-                ease: "power2.out",
-                scrollTrigger: {
-                  trigger: container.current.querySelector(".cards"),
-                  start: "top top",
-                  end: () => `+=${window.innerHeight}`,
-                  scrub: 2,
-                  id: `spread-${index}`,
-                  scroller: document.querySelector(".main-body"),
-                },
-              };
-        gsap.to(card, params);
-      });
-
-      cards.forEach((card, index) => {
-        const frontEl = card.querySelector(".flip-card-front");
-        const backEl = card.querySelector(".flip-card-back");
-      
-        const staggerOffset = index * 0.05;
-        const startOffset = 1 / 3 + staggerOffset;
-        const endOffset = 2 / 3 + staggerOffset;
-        const totalDuration = endOffset - startOffset;
-      
-        // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
-        const timeline = gsap.timeline({ paused: true });
-      
-        timeline.to(frontEl, { rotateY: -180, ease: "power1.out", duration: totalDuration });
-        timeline.to(backEl, { rotateY: 0, ease: "power1.out", duration: totalDuration }, 0);
-        timeline.to(card, {
+      timeline.to(
+        backEl,
+        { rotateY: 0, ease: "power1.out", duration: totalDuration },
+        0
+      );
+      timeline.to(
+        card,
+        {
           xPercent: -50,
           yPercent: -50,
           rotate: rotations[index],
           ease: "power1.out",
           duration: totalDuration,
-        }, 0);
-      
-        ScrollTrigger.create({
-          trigger: container.current.querySelector(".cards"),
-          start: "top top",
-          end: () => `+=${totalScrollHeight}`,
-          scrub: 2,
-          id: `rotate-flip-${index}`,
-          scroller: document.querySelector(".main-body"),
-          onUpdate: (self) => {
-            const progress = self.progress;
-            if (progress >= startOffset && progress <= endOffset) {
-              const animationProgress = (progress - startOffset) / totalDuration;
-              timeline.progress(animationProgress);
-            }
-          },
-        })
-      }),      
-    { scope: container }
-});
+        },
+        0
+      );
+
+      ScrollTrigger.create({
+        trigger: container.current.querySelector(".cards"),
+        start: "top top",
+        end: () => `+=${totalScrollHeight}`,
+        scrub: window.innerWidth > 800 ? 2 : true,
+        id: `rotate-flip-${index}`,
+        scroller: document.querySelector(".main-body"),
+        onUpdate: (self) => {
+          const progress = self.progress;
+          if (progress >= startOffset && progress <= endOffset) {
+            const animationProgress = (progress - startOffset) / totalDuration;
+            timeline.progress(animationProgress);
+          }
+        },
+      });
+    }),
+      { scope: container };
+  });
 
   useEffect(() => {
     return () => {
