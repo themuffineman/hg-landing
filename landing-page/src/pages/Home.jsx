@@ -67,15 +67,28 @@ const Home = () => {
         gsap.to(card, params);
       });
 
-      // flip cards and reset rotation with staggered effect
       cards.forEach((card, index) => {
         const frontEl = card.querySelector(".flip-card-front");
         const backEl = card.querySelector(".flip-card-back");
-
+      
         const staggerOffset = index * 0.05;
         const startOffset = 1 / 3 + staggerOffset;
         const endOffset = 2 / 3 + staggerOffset;
-
+        const totalDuration = endOffset - startOffset;
+      
+        // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
+        const timeline = gsap.timeline({ paused: true });
+      
+        timeline.to(frontEl, { rotateY: -180, ease: "power1.out", duration: totalDuration });
+        timeline.to(backEl, { rotateY: 0, ease: "power1.out", duration: totalDuration }, 0);
+        timeline.to(card, {
+          xPercent: -50,
+          yPercent: -50,
+          rotate: rotations[index],
+          ease: "power1.out",
+          duration: totalDuration,
+        }, 0);
+      
         ScrollTrigger.create({
           trigger: container.current.querySelector(".cards"),
           start: "top top",
@@ -86,26 +99,14 @@ const Home = () => {
           onUpdate: (self) => {
             const progress = self.progress;
             if (progress >= startOffset && progress <= endOffset) {
-              const animationProgress = (progress - startOffset) / (1 / 3);
-              const frontRotation = -180 * animationProgress;
-              const backRotation = 180 - 180 * animationProgress;
-              const cardRotation = rotations[index] * (1 - animationProgress);
-
-              gsap.to(frontEl, { rotateY: frontRotation, ease: "power1.out" });
-              gsap.to(backEl, { rotateY: backRotation, ease: "power1.out" });
-              gsap.to(card, {
-                xPercent: -50,
-                yPercent: -50,
-                rotate: cardRotation,
-                ease: "power1.out",
-              });
+              const animationProgress = (progress - startOffset) / totalDuration;
+              timeline.progress(animationProgress);
             }
           },
-        });
-      });
-    },
+        })
+      }),      
     { scope: container }
-  );
+});
 
   useEffect(() => {
     return () => {
