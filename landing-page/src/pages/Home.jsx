@@ -51,7 +51,7 @@ const Home = () => {
               },
             }
           : {
-              top: `${positions[index] * 2.4}%`,
+              top: `${positions[index] * 2}%`,
               rotation: `${rotations[index]}`,
               ease: "none",
               scrollTrigger: {
