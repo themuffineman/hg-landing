@@ -34,14 +34,14 @@ body {
   .main-body {
     height: 100vh;
   }
-  .cards {
+/*   .cards {
     height: 110vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-items: center;
   }
- 
+  */
   /* .card {
     transform: translateX(-50%, -50%);
     width: 240px;
