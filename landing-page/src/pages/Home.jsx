@@ -143,7 +143,7 @@ const Home = () => {
 
   useGSAP(() => {
   const cards = cardRefs.current;
-  const totalScrollHeight = window.innerHeight * 3;
+  const totalScrollHeight = document.documentElement.scrollHeight; // Total height of the document
   const positions = [14, 38, 62, 86];
   const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
 
@@ -152,7 +152,7 @@ const Home = () => {
     scrollTrigger: {
       trigger: container.current,
       start: "top top",
-      end: () => `+=${totalScrollHeight + 300}`, // Further extended for full rotation view
+      end: () => `+=${totalScrollHeight}`, // Pin until the bottom of the page
       onEnter: () => {
         const topOffset = container.current.getBoundingClientRect().top;
         gsap.set(".cards", { position: "fixed", top: topOffset });
@@ -239,7 +239,7 @@ const Home = () => {
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
-      end: () => `+=${totalScrollHeight + 100}`, // Ensures cards remain pinned until animation ends
+      end: () => `+=${totalScrollHeight}`, // Pin until the bottom of the page
       scrub: window.innerWidth > 800 ? 2 : 2,
       id: `rotate-flip-${index}`,
       scroller: document.querySelector(".main-body"),
@@ -253,6 +253,7 @@ const Home = () => {
     });
   });
 }, { scope: container });
+
 
 
   useEffect(() => {
