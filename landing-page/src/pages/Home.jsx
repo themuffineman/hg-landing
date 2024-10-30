@@ -179,7 +179,7 @@ const Home = () => {
           ease: "none",
           scrollTrigger: {
             trigger: container.current.querySelector(".cards"),
-            start: "top top+=100", // Start after the first card is fully visible
+            start: "top top+=200", // Start after the first card is fully visible
             end: () => `+=${window.innerHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
