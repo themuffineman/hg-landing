@@ -22,7 +22,18 @@ const Home = () => {
     const totalScrollHeight = window.innerHeight * 3;
     const positions = [14, 38, 62, 86];
     const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0]
-
+    
+    gsap.to(container.current.querySelector(".cards"), {
+    scrollTrigger: {
+        trigger: container.current,
+        start: "top top",
+        end: () => `+=${totalScrollHeight}`,
+        onEnter: () => gsap.set(".cards", { position: "fixed", top: 0 }),
+        onLeave: () => gsap.set(".cards", { position: "absolute", top: "initial" }),
+        onEnterBack: () => gsap.set(".cards", { position: "fixed", top: 0 }),
+        onLeaveBack: () => gsap.set(".cards", { position: "absolute", top: "initial" }),
+      },
+    });
     // pin cards section
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
