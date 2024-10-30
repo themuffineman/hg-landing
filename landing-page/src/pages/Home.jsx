@@ -21,7 +21,7 @@ const Home = () => {
     const cards = cardRefs.current;
     const totalScrollHeight = window.innerHeight * 3;
     const positions = [14, 38, 62, 86];
-    const rotations = [-15, -7.5, 7.5, 15];
+    const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [-7.5, -3.75, 3.75, 7.5]
 
     // pin cards section
     ScrollTrigger.create({
