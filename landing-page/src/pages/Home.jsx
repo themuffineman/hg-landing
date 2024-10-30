@@ -151,7 +151,7 @@ const Home = () => {
   gsap.to(container.current.querySelector(".cards"), {
     scrollTrigger: {
       trigger: container.current,
-      start: "top top",
+      start: "top top", // Starts pinning as soon as the container top hits the viewport top
       end: () => `+=${totalScrollHeight}`, // Pin until the bottom of the page
       onEnter: () => {
         const topOffset = container.current.getBoundingClientRect().top;
@@ -179,7 +179,7 @@ const Home = () => {
           ease: "none",
           scrollTrigger: {
             trigger: container.current.querySelector(".cards"),
-            start: "top top",
+            start: "top top+=100", // Start after the first card is fully visible
             end: () => `+=${window.innerHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
@@ -192,7 +192,7 @@ const Home = () => {
           ease: "power1.out",
           scrollTrigger: {
             trigger: container.current.querySelector(".cards"),
-            start: "top top",
+            start: "top top+=100", // Start after the first card is fully visible
             end: () => `+=${window.innerHeight}`,
             scrub: 1,
             id: `spread-${index}`,
@@ -238,7 +238,7 @@ const Home = () => {
 
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
-      start: "top top",
+      start: "top top+=100", // Start after the first card is fully visible
       end: () => `+=${totalScrollHeight}`, // Pin until the bottom of the page
       scrub: window.innerWidth > 800 ? 2 : 2,
       id: `rotate-flip-${index}`,
