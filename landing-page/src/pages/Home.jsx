@@ -147,12 +147,12 @@ const Home = () => {
   const positions = [14, 38, 62, 86];
   const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
 
-  // Pinning Setup without duplicate pin: true
+  // Pinning Setup
   gsap.to(container.current.querySelector(".cards"), {
     scrollTrigger: {
       trigger: container.current,
       start: "top top",
-      end: () => `+=${totalScrollHeight + 100}`, // Slightly extended to allow full rotation
+      end: () => `+=${totalScrollHeight + 300}`, // Further extended for full rotation view
       onEnter: () => {
         const topOffset = container.current.getBoundingClientRect().top;
         gsap.set(".cards", { position: "fixed", top: topOffset });
@@ -170,7 +170,7 @@ const Home = () => {
     },
   });
 
-  // Spread cards
+  // Spread Cards Animation
   cards.forEach((card, index) => {
     const params = window.innerWidth > 800
       ? {
@@ -202,7 +202,7 @@ const Home = () => {
     gsap.to(card, params);
   });
 
-  // Rotate cards
+  // Rotate Cards
   cards.forEach((card, index) => {
     const frontEl = card.querySelector(".flip-card-front");
     const backEl = card.querySelector(".flip-card-back");
@@ -239,7 +239,7 @@ const Home = () => {
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
-      end: () => `+=${totalScrollHeight}`, // Syncs with overall scroll length
+      end: () => `+=${totalScrollHeight + 100}`, // Ensures cards remain pinned until animation ends
       scrub: window.innerWidth > 800 ? 2 : 2,
       id: `rotate-flip-${index}`,
       scroller: document.querySelector(".main-body"),
