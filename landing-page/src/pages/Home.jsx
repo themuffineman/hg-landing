@@ -53,7 +53,7 @@ const Home = () => {
           : {
               top: `${positions[index] * 2}%`,
               rotation: `${rotations[index]}`,
-              ease: "none",
+              ease: "power1.out",
               scrollTrigger: {
                 trigger: container.current.querySelector(".cards"),
                 start: "top top",
@@ -80,12 +80,12 @@ const Home = () => {
 
       timeline.to(frontEl, {
         rotateY: -180,
-        ease: "none",
+        ease: "power1.out",
         duration: totalDuration,
       });
       timeline.to(
         backEl,
-        { rotateY: 0, ease: "none", duration: totalDuration },
+        { rotateY: 0, ease: "power1.out", duration: totalDuration },
         0
       );
       timeline.to(
@@ -94,7 +94,7 @@ const Home = () => {
           xPercent: -50,
           yPercent: -50,
           rotate: rotations[index],
-          ease: "none",
+          ease: "power1.out",
           duration: totalDuration,
         },
         0
@@ -104,7 +104,7 @@ const Home = () => {
         trigger: container.current.querySelector(".cards"),
         start: "top top",
         end: () => `+=${totalScrollHeight}`,
-        scrub: window.innerWidth > 800 ? 2 : true,
+        scrub: window.innerWidth > 800 ? 2 : 2,
         id: `rotate-flip-${index}`,
         scroller: document.querySelector(".main-body"),
         onUpdate: (self) => {
