@@ -17,129 +17,243 @@ const Home = () => {
   const container = useRef(null);
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
-  useGSAP(() => {
-    const cards = cardRefs.current;
-    const totalScrollHeight = window.innerHeight * 3;
-    const positions = [14, 38, 62, 86];
-    const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0]
+  // useGSAP(() => {
+  //   const cards = cardRefs.current;
+  //   const totalScrollHeight = window.innerHeight * 3;
+  //   const positions = [14, 38, 62, 86];
+  //   const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0]
     
-    gsap.to(container.current.querySelector(".cards"), {
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top top", // Starts pinning as soon as the container top hits the viewport top
-        end: () => `+=${totalScrollHeight}`, // Adjusts according to your scroll length
-        onEnter: () => {
-          const topOffset = container.current.getBoundingClientRect().top;
-          gsap.set(".cards", { position: "fixed", top: topOffset }); // Pin at the exact top of the container
-        },
-        onLeave: () => {
-          gsap.set(".cards", { position: "absolute", top: "100%" }); // Ensures it reverts at the right place
-        },
-        onEnterBack: () => {
-          const topOffset = container.current.getBoundingClientRect().top;
-          gsap.set(".cards", { position: "fixed", top: topOffset });
-        },
-        onLeaveBack: () => {
-          gsap.set(".cards", { position: "absolute", top: "initial" });
-        },
-      },
-    });
+  //   gsap.to(container.current.querySelector(".cards"), {
+  //     scrollTrigger: {
+  //       trigger: container.current,
+  //       start: "top top", // Starts pinning as soon as the container top hits the viewport top
+  //       end: () => `+=${totalScrollHeight}`, // Adjusts according to your scroll length
+  //       onEnter: () => {
+  //         const topOffset = container.current.getBoundingClientRect().top;
+  //         gsap.set(".cards", { position: "fixed", top: topOffset }); // Pin at the exact top of the container
+  //       },
+  //       onLeave: () => {
+  //         gsap.set(".cards", { position: "absolute", top: "100%" }); // Ensures it reverts at the right place
+  //       },
+  //       onEnterBack: () => {
+  //         const topOffset = container.current.getBoundingClientRect().top;
+  //         gsap.set(".cards", { position: "fixed", top: topOffset });
+  //       },
+  //       onLeaveBack: () => {
+  //         gsap.set(".cards", { position: "absolute", top: "initial" });
+  //       },
+  //     },
+  //   });
 
-    // pin cards section
+  //   // pin cards section
+  //   ScrollTrigger.create({
+  //     trigger: container.current.querySelector(".cards"),
+  //     start: "top top",
+  //     end: () => `+=${totalScrollHeight}`,
+  //     pin: true,
+  //     pinSpacing: false,
+  //     scroller: document.querySelector(".main-body"),
+  //   });
+
+  //   // spread cards
+  //   cards.forEach((card, index) => {
+  //     const params =
+  //       window.innerWidth > 800
+  //         ? {
+  //             left: `${positions[index]}%`,
+  //             rotation: `${rotations[index]}`,
+  //             ease: "none",
+  //             scrollTrigger: {
+  //               trigger: container.current.querySelector(".cards"),
+  //               start: "top top",
+  //               end: () => `+=${window.innerHeight}`,
+  //               scrub: 0.5,
+  //               id: `spread-${index}`,
+  //               scroller: document.querySelector(".main-body"),
+  //             },
+  //           }
+  //         : {
+  //             top: `${positions[index] * 2}%`,
+  //             rotation: `${rotations[index]}`,
+  //             ease: "power1.out",
+  //             scrollTrigger: {
+  //               trigger: container.current.querySelector(".cards"),
+  //               start: "top top",
+  //               end: () => `+=${window.innerHeight}`,
+  //               scrub: 1,
+  //               id: `spread-${index}`,
+  //               scroller: document.querySelector(".main-body"),
+  //             },
+  //           };
+  //     gsap.to(card, params);
+  //   });
+  //   // rotate cards
+  //   cards.forEach((card, index) => {
+  //     const frontEl = card.querySelector(".flip-card-front");
+  //     const backEl = card.querySelector(".flip-card-back");
+
+  //     const staggerOffset = index * 0.05;
+  //     const startOffset = 1 / 3 + staggerOffset;
+  //     const endOffset = 2 / 3 + staggerOffset;
+  //     const totalDuration = endOffset - startOffset;
+
+  //     // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
+  //     const timeline = gsap.timeline({ paused: true });
+
+  //     timeline.to(frontEl, {
+  //       rotateY: -180,
+  //       ease: "power1.out",
+  //       duration: totalDuration,
+  //     });
+  //     timeline.to(
+  //       backEl,
+  //       { rotateY: 0, ease: "power1.out", duration: totalDuration },
+  //       0
+  //     );
+  //     timeline.to(
+  //       card,
+  //       {
+  //         xPercent: -50,
+  //         yPercent: -50,
+  //         rotate: rotations[index],
+  //         ease: "power1.out",
+  //         duration: totalDuration,
+  //       },
+  //       0
+  //     );
+
+  //     ScrollTrigger.create({
+  //       trigger: container.current.querySelector(".cards"),
+  //       start: "top top",
+  //       end: () => `+=${totalScrollHeight}`,
+  //       scrub: window.innerWidth > 800 ? 2 : 2,
+  //       id: `rotate-flip-${index}`,
+  //       scroller: document.querySelector(".main-body"),
+  //       onUpdate: (self) => {
+  //         const progress = self.progress;
+  //         if (progress >= startOffset && progress <= endOffset) {
+  //           const animationProgress = (progress - startOffset) / totalDuration;
+  //           timeline.progress(animationProgress);
+  //         }
+  //       },
+  //     });
+  //   }),
+  //     { scope: container };
+  // });
+
+  useGSAP(() => {
+  const cards = cardRefs.current;
+  const totalScrollHeight = window.innerHeight * 3;
+  const positions = [14, 38, 62, 86];
+  const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
+
+  // Pinning Setup without duplicate pin: true
+  gsap.to(container.current.querySelector(".cards"), {
+    scrollTrigger: {
+      trigger: container.current,
+      start: "top top",
+      end: () => `+=${totalScrollHeight + 100}`, // Slightly extended to allow full rotation
+      onEnter: () => {
+        const topOffset = container.current.getBoundingClientRect().top;
+        gsap.set(".cards", { position: "fixed", top: topOffset });
+      },
+      onLeave: () => {
+        gsap.set(".cards", { position: "absolute", top: "100%" });
+      },
+      onEnterBack: () => {
+        const topOffset = container.current.getBoundingClientRect().top;
+        gsap.set(".cards", { position: "fixed", top: topOffset });
+      },
+      onLeaveBack: () => {
+        gsap.set(".cards", { position: "absolute", top: "initial" });
+      },
+    },
+  });
+
+  // Spread cards
+  cards.forEach((card, index) => {
+    const params = window.innerWidth > 800
+      ? {
+          left: `${positions[index]}%`,
+          rotation: `${rotations[index]}`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: container.current.querySelector(".cards"),
+            start: "top top",
+            end: () => `+=${window.innerHeight}`,
+            scrub: 0.5,
+            id: `spread-${index}`,
+            scroller: document.querySelector(".main-body"),
+          },
+        }
+      : {
+          top: `${positions[index] * 2}%`,
+          rotation: `${rotations[index]}`,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: container.current.querySelector(".cards"),
+            start: "top top",
+            end: () => `+=${window.innerHeight}`,
+            scrub: 1,
+            id: `spread-${index}`,
+            scroller: document.querySelector(".main-body"),
+          },
+        };
+    gsap.to(card, params);
+  });
+
+  // Rotate cards
+  cards.forEach((card, index) => {
+    const frontEl = card.querySelector(".flip-card-front");
+    const backEl = card.querySelector(".flip-card-back");
+
+    const staggerOffset = index * 0.05;
+    const startOffset = 1 / 3 + staggerOffset;
+    const endOffset = 2 / 3 + staggerOffset;
+    const totalDuration = endOffset - startOffset;
+
+    const timeline = gsap.timeline({ paused: true });
+
+    timeline.to(frontEl, {
+      rotateY: -180,
+      ease: "power1.out",
+      duration: totalDuration,
+    });
+    timeline.to(
+      backEl,
+      { rotateY: 0, ease: "power1.out", duration: totalDuration },
+      0
+    );
+    timeline.to(
+      card,
+      {
+        xPercent: -50,
+        yPercent: -50,
+        rotate: rotations[index],
+        ease: "power1.out",
+        duration: totalDuration,
+      },
+      0
+    );
+
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
-      end: () => `+=${totalScrollHeight}`,
-      pin: true,
-      pinSpacing: false,
+      end: () => `+=${totalScrollHeight}`, // Syncs with overall scroll length
+      scrub: window.innerWidth > 800 ? 2 : 2,
+      id: `rotate-flip-${index}`,
       scroller: document.querySelector(".main-body"),
+      onUpdate: (self) => {
+        const progress = self.progress;
+        if (progress >= startOffset && progress <= endOffset) {
+          const animationProgress = (progress - startOffset) / totalDuration;
+          timeline.progress(animationProgress);
+        }
+      },
     });
-
-    // spread cards
-    cards.forEach((card, index) => {
-      const params =
-        window.innerWidth > 800
-          ? {
-              left: `${positions[index]}%`,
-              rotation: `${rotations[index]}`,
-              ease: "none",
-              scrollTrigger: {
-                trigger: container.current.querySelector(".cards"),
-                start: "top top",
-                end: () => `+=${window.innerHeight}`,
-                scrub: 0.5,
-                id: `spread-${index}`,
-                scroller: document.querySelector(".main-body"),
-              },
-            }
-          : {
-              top: `${positions[index] * 2}%`,
-              rotation: `${rotations[index]}`,
-              ease: "power1.out",
-              scrollTrigger: {
-                trigger: container.current.querySelector(".cards"),
-                start: "top top",
-                end: () => `+=${window.innerHeight}`,
-                scrub: 1,
-                id: `spread-${index}`,
-                scroller: document.querySelector(".main-body"),
-              },
-            };
-      gsap.to(card, params);
-    });
-    // rotate cards
-    cards.forEach((card, index) => {
-      const frontEl = card.querySelector(".flip-card-front");
-      const backEl = card.querySelector(".flip-card-back");
-
-      const staggerOffset = index * 0.05;
-      const startOffset = 1 / 3 + staggerOffset;
-      const endOffset = 2 / 3 + staggerOffset;
-      const totalDuration = endOffset - startOffset;
-
-      // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
-      const timeline = gsap.timeline({ paused: true });
-
-      timeline.to(frontEl, {
-        rotateY: -180,
-        ease: "power1.out",
-        duration: totalDuration,
-      });
-      timeline.to(
-        backEl,
-        { rotateY: 0, ease: "power1.out", duration: totalDuration },
-        0
-      );
-      timeline.to(
-        card,
-        {
-          xPercent: -50,
-          yPercent: -50,
-          rotate: rotations[index],
-          ease: "power1.out",
-          duration: totalDuration,
-        },
-        0
-      );
-
-      ScrollTrigger.create({
-        trigger: container.current.querySelector(".cards"),
-        start: "top top",
-        end: () => `+=${totalScrollHeight}`,
-        scrub: window.innerWidth > 800 ? 2 : 2,
-        id: `rotate-flip-${index}`,
-        scroller: document.querySelector(".main-body"),
-        onUpdate: (self) => {
-          const progress = self.progress;
-          if (progress >= startOffset && progress <= endOffset) {
-            const animationProgress = (progress - startOffset) / totalDuration;
-            timeline.progress(animationProgress);
-          }
-        },
-      });
-    }),
-      { scope: container };
   });
+}, { scope: container });
+
 
   useEffect(() => {
     return () => {
