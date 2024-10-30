@@ -34,6 +34,15 @@ body {
   .main-body {
     height: 90vh;
   }
+  .card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 180px;
+  perspective: 1000px;
+}
   /* .cards {
     height: 250vh;
     display: flex;
