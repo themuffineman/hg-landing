@@ -32,23 +32,16 @@ body {
 }
 @media (max-width: 767px) {
   .main-body {
-    height: 90vh;
+    height: 100vh;
   }
-  .card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120px;
-  height: 180px;
-  perspective: 1000px;
-}
-  /* .cards {
-    height: 250vh;
+  .cards {
+    height: 150vh;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-items: center;
-  } */
+  }
+ 
   /* .card {
     transform: translateX(-50%, -50%);
     width: 240px;
