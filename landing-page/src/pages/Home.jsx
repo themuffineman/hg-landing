@@ -50,7 +50,7 @@ const Home = () => {
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: false,
+      pin: true,
       pinSpacing: false,
       scroller: document.querySelector(".main-body"),
     });
