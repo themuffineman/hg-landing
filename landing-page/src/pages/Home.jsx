@@ -33,7 +33,7 @@ const Home = () => {
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
       pin: true,
-      pinSpacing: false,
+      pinSpacing: true,
       pinType: "absolute", // Pinned element will be fixed to the viewport
       scroller: document.querySelector(".main-body"),
     });
