@@ -35,7 +35,6 @@ const Home = () => {
       pin: true,
       pinSpacing: false,
       pinType: "fixed", // Pinned element will be fixed to the viewport
-      anticipatePin: 100, // Anticipate the pin by 100 pixels
       scroller: document.querySelector(".main-body"),
     });
     // spread cards
