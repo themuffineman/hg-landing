@@ -38,7 +38,7 @@ const Home = () => {
   }
 
 // Usage example
-toggleStickyAtScroll('.cards', 1000); // Adjust '500' to the scroll position you want
+toggleStickyAtScroll('.cards', 3000); // Adjust '500' to the scroll position you want
 
   
   useGSAP(() => {
