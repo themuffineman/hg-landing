@@ -41,7 +41,7 @@ body {
     align-items: flex-start;
     justify-items: center;
     position: sticky;
-    top: 10; /* Sticks to the top of the viewport */
+    top: 70%; /* Sticks to the top of the viewport */
     z-index: 1; /* Keeps it above other content */
   }
  
