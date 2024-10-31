@@ -34,13 +34,15 @@ body {
   .main-body {
     height: 100vh;
   }
-/*   .cards {
+  .cards {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-items: center;
-  } */
+    position: sticky;
+    top: 0; /* Sticks to the top of the container */
+  }
  
   /* .card {
     transform: translateX(-50%, -50%);
