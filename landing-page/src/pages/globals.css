@@ -44,6 +44,13 @@ body {
     position: sticky;
     top: 0;
   }
+  .parent-container {
+  width: 100vw;
+  height: 160vh;
+  overflow: hidden;
+  position: relative;
+  font-family: "Instrument Serif";
+}
   /* .card {
     transform: translateX(-50%, -50%);
     width: 240px;
