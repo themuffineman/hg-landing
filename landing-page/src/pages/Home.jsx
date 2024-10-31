@@ -18,37 +18,7 @@ const Home = () => {
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (cardsRef.current) {
-        const { top } = cardsRef.current.getBoundingClientRect();
-        // Check if the cards are in view
-        if (top <= 0) {
-          // Cards are scrolled out of view, revert to normal flow
-          cardsRef.current.style.position = 'absolute';
-          cardsRef.current.style.top = 'initial'; // You can adjust this as necessary
-        } else {
-          // Cards are in view, set to sticky
-          cardsRef.current.style.position = 'sticky';
-          cardsRef.current.style.top = '20%'; // Adjust to stick at the top of the viewport
-        }
-      }
-    };
-
-    // Set the cards to sticky on initial load
-    if (cardsRef.current) {
-      cardsRef.current.style.position = 'sticky';
-      cardsRef.current.style.top = '0';
-    }
-
-    // Attach the scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Cleanup function to remove the event listener
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  
   
   useGSAP(() => {
     const cards = cardRefs.current;
