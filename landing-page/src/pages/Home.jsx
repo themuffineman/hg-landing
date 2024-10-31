@@ -25,8 +25,7 @@ const Home = () => {
     const totalScrollHeight = window.innerHeight * 3;
     const positions = [14, 38, 62, 86];
     const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0]
-
-
+    
     // pin cards section
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
@@ -135,7 +134,7 @@ const Home = () => {
 
   return (
     <div className="main-body " ref={container}>
-      <div className="h-[520vh]">
+      <div className="h-[120vh]">
         <section className="relative h-max min-h-[100vh] flex flex-col gap-4 items-center">
           <div className=" pt-10 flex items-center justify-center">
             <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">
