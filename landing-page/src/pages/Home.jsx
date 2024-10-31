@@ -32,7 +32,7 @@ const Home = () => {
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: true,
+      pin: false,
       pinSpacing: true,
       pinType: "absolute", // Pinned element will be fixed to the viewport
       scroller: document.querySelector(".main-body"),
