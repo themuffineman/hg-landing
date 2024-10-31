@@ -18,7 +18,28 @@ const Home = () => {
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
 
+  function toggleStickyAtScroll(stickySelector, stopScrollPosition) {
+    const stickyElement = document.querySelector(stickySelector);
   
+    window.addEventListener('scroll', () => {
+      // Check the current scroll position
+      const currentScroll = window.scrollY;
+  
+      if (currentScroll >= stopScrollPosition) {
+        // Change to 'relative' once the stop scroll position is met
+        stickyElement.style.position = 'relative';
+        stickyElement.style.top = 'initial';
+      } else {
+        // Keep it as 'sticky' if scroll position is less than stopScrollPosition
+        stickyElement.style.position = 'sticky';
+        stickyElement.style.top = '0'; // Adjust the top offset as needed
+      }
+    });
+  }
+
+// Usage example
+toggleStickyAtScroll('.cards', 500); // Adjust '500' to the scroll position you want
+
   
   useGSAP(() => {
     const cards = cardRefs.current;
