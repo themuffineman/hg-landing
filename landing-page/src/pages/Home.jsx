@@ -25,39 +25,19 @@ const Home = () => {
     const totalScrollHeight = window.innerHeight * 3;
     const positions = [14, 38, 62, 86];
     const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0]
-    
-    // gsap.to(container.current.querySelector(".cards"), {
-    //   scrollTrigger: {
-    //     trigger: container.current,
-    //     start: "top top", // Starts pinning as soon as the container top hits the viewport top
-    //     end: () => `+=${totalScrollHeight}`, // Adjusts according to your scroll length
-    //     onEnter: () => {
-    //       const topOffset = container.current.getBoundingClientRect().top;
-    //       gsap.set(".cards", { position: "fixed", top: topOffset }); // Pin at the exact top of the container
-    //     },
-    //     onLeave: () => {
-    //       gsap.set(".cards", { position: "absolute", top: "100%" }); // Ensures it reverts at the right place
-    //     },
-    //     onEnterBack: () => {
-    //       const topOffset = container.current.getBoundingClientRect().top;
-    //       gsap.set(".cards", { position: "fixed", top: topOffset });
-    //     },
-    //     onLeaveBack: () => {
-    //       gsap.set(".cards", { position: "absolute", top: "initial" });
-    //     },
-    //   },
-    // });
+
 
     // pin cards section
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: false,
+      pin: true,
       pinSpacing: false,
+      pinType: "fixed", // Pinned element will be fixed to the viewport
+      anticipatePin: 100, // Anticipate the pin by 100 pixels
       scroller: document.querySelector(".main-body"),
     });
-
     // spread cards
     cards.forEach((card, index) => {
       const params =
