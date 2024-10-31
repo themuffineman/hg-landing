@@ -34,7 +34,7 @@ const Home = () => {
       end: () => `+=${totalScrollHeight}`,
       pin: true,
       pinSpacing: false,
-      pinType: "fixed", // Pinned element will be fixed to the viewport
+      pinType: "absolute", // Pinned element will be fixed to the viewport
       scroller: document.querySelector(".main-body"),
     });
     // spread cards
