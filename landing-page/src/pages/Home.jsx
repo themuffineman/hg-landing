@@ -18,27 +18,32 @@ const Home = () => {
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
 
-  function toggleStickyAtScroll(stickySelector, stopScrollPosition) {
-    const stickyElement = document.querySelector(stickySelector);
-  
-    window.addEventListener('scroll', () => {
-      // Check the current scroll position
-      const currentScroll = window.scrollY;
-  
-      if (currentScroll >= stopScrollPosition) {
-        // Change to 'relative' once the stop scroll position is met
-        stickyElement.style.position = 'relative';
-        stickyElement.style.top = 'initial';
-      } else {
-        // Keep it as 'sticky' if scroll position is less than stopScrollPosition
-        stickyElement.style.position = 'sticky';
-        stickyElement.style.top = '0'; // Adjust the top offset as needed
-      }
-    });
+  function toggleStickyAtScroll(stickySelector, stopScrollPercent) {
+  const stickyElement = document.querySelector(stickySelector);
+
+  function handleScroll() {
+    // Calculate the stop scroll position as a percentage of the document's total height
+    const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const stopScrollPosition = totalScrollHeight * (stopScrollPercent / 100);
+    const currentScroll = window.scrollY;
+
+    if (currentScroll >= stopScrollPosition) {
+      // Change to 'relative' once the stop scroll position is met
+      stickyElement.style.position = 'relative';
+      stickyElement.style.top = 'initial';
+    } else {
+      // Keep it as 'sticky' if scroll position is less than stopScrollPosition
+      stickyElement.style.position = 'sticky';
+      stickyElement.style.top = '0'; // Adjust the top offset as needed
+    }
   }
 
+  window.addEventListener('scroll', handleScroll);
+}
+
 // Usage example
-toggleStickyAtScroll('.cards', 3000); // Adjust '500' to the scroll position you want
+toggleStickyAtScroll('.sticky-container', 80); // Adjust '50' to represent 50% of the scrollable height
+ // Adjust '500' to the scroll position you want
 
   
   useGSAP(() => {
