@@ -35,10 +35,11 @@ body {
     height: 100vh;
   }
   .cards {
-    height: 150vh;
+    height: 300vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 15px;
     justify-items: center;
     position: sticky;
     top: 0; /* Sticks to the top of the container */
