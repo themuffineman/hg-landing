@@ -32,10 +32,10 @@ body {
 }
 @media (max-width: 767px) {
   .main-body {
-    height: 100vh;
+    height: 200vh;
   }
   .cards {
-    height: 50vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
