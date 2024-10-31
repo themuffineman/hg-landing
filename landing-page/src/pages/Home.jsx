@@ -7,7 +7,6 @@ import Card from "../components/Cards";
 import { Gift } from "../models/Gift";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import { useGSAP } from "@gsap/react";
 import "./globals.css";
 
@@ -18,32 +17,32 @@ const Home = () => {
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
 
-  function toggleStickyAtScroll(stickySelector, stopScrollPercent) {
-  const stickyElement = document.querySelector(stickySelector);
+  // function toggleStickyAtScroll(stickySelector, stopScrollPercent) {
+  //   const stickyElement = document.querySelector(stickySelector);
+  //   function handleScroll() {
+  //     // Calculate the stop scroll position as a percentage of the document's total height
+  //     const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  //     const stopScrollPosition = totalScrollHeight * (stopScrollPercent / 100);
+  //     const currentScroll = window.scrollY;
+  
+  //     if (currentScroll >= stopScrollPosition) {
+  //       // Change to 'relative' once the stop scroll position is met
+  //       stickyElement.style.position = 'relative';
+  //       stickyElement.style.top = 'initial';
+  //     } else {
+  //       // Keep it as 'sticky' if scroll position is less than stopScrollPosition
+  //       stickyElement.style.position = 'sticky';
+  //       stickyElement.style.top = '0'; // Adjust the top offset as needed
+  //     }
+  //   }
 
-  function handleScroll() {
-    // Calculate the stop scroll position as a percentage of the document's total height
-    const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const stopScrollPosition = totalScrollHeight * (stopScrollPercent / 100);
-    const currentScroll = window.scrollY;
+  //   window.addEventListener('scroll', handleScroll);
+  // }
 
-    if (currentScroll >= stopScrollPosition) {
-      // Change to 'relative' once the stop scroll position is met
-      stickyElement.style.position = 'relative';
-      stickyElement.style.top = 'initial';
-    } else {
-      // Keep it as 'sticky' if scroll position is less than stopScrollPosition
-      stickyElement.style.position = 'sticky';
-      stickyElement.style.top = '0'; // Adjust the top offset as needed
-    }
-  }
+  // if (window.innerWidth < 800) {
+  //   toggleStickyAtScroll('.sticky-container', 80);
+  // }
 
-  window.addEventListener('scroll', handleScroll);
-}
-
-// Usage example
-toggleStickyAtScroll('.sticky-container', 80); // Adjust '50' to represent 50% of the scrollable height
- // Adjust '500' to the scroll position you want
 
   
   useGSAP(() => {
@@ -57,7 +56,7 @@ toggleStickyAtScroll('.sticky-container', 80); // Adjust '50' to represent 50% o
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: false,
+      pin: window.innerWidth > 800? true : true,
       pinSpacing: true,
       pinType: "absolute", // Pinned element will be fixed to the viewport
       scroller: document.querySelector(".main-body"),
@@ -160,7 +159,7 @@ toggleStickyAtScroll('.sticky-container', 80); // Adjust '50' to represent 50% o
 
   return (
     <div className="main-body " ref={container}>
-      <div className="h-[920vh]">
+      <div className="h-[520vh]">
         <section className="relative h-max min-h-[100vh] flex flex-col gap-4 items-center">
           <div className=" pt-10 flex items-center justify-center">
             <div className="md:flex-row flex-col flex items-center justify-center w-full gap-4 md:gap-8 ">

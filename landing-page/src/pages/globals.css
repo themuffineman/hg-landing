@@ -36,15 +36,9 @@ body {
   }
   .cards {
     height: 100vh;
-/*     position: sticky;
+    /* position: sticky;
     top: 0; */
   }
-  .parent-container {
-  width: 100vw;
-  height: 520vh;
-  position: relative;
-  font-family: "Instrument Serif";
-}
   
   /* .card {
     transform: translateX(-50%, -50%);
