@@ -36,14 +36,16 @@ body {
   }
   .cards {
     height: 100vh;
-/*     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    justify-items: top; */
     position: sticky;
     top: 0;
   }
+  .parent-container {
+  width: 100vw;
+  height: 9200vh;
+  overflow: hidden;
+  position: relative;
+  font-family: "Instrument Serif";
+}
   
   /* .card {
     transform: translateX(-50%, -50%);
