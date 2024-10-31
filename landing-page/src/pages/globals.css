@@ -40,9 +40,6 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-items: center;
-    position: sticky;
-    top: 25%; /* Sticks to the top of the viewport */
-    z-index: 1; /* Keeps it above other content */
   }
  
   /* .card {
