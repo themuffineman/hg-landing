@@ -42,7 +42,7 @@ body {
   .parent-container {
   width: 100vw;
   height: 9200vh;
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
   font-family: "Instrument Serif";
 }
