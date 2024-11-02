@@ -31,6 +31,7 @@ const Home = () => {
         cardContainer.style.position = "relative"; // Disable sticky
       } else {
         cardContainer.style.position = "sticky"; // Re-enable sticky if above limit
+        cardContainer.style.top = "0";
       }
     };
 
