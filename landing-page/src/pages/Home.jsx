@@ -17,82 +17,81 @@ const Home = () => {
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
 
-  // function toggleStickyAtScroll(stickySelector, stopScrollPercent) {
-  //   const stickyElement = document.querySelector(stickySelector);
-  //   function handleScroll() {
-  //     // Calculate the stop scroll position as a percentage of the document's total height
-  //     const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  //     const stopScrollPosition = totalScrollHeight * (stopScrollPercent / 100);
-  //     const currentScroll = window.scrollY;
-  
-  //     if (currentScroll >= stopScrollPosition) {
-  //       // Change to 'relative' once the stop scroll position is met
-  //       stickyElement.style.position = 'relative';
-  //       stickyElement.style.top = 'initial';
-  //     } else {
-  //       // Keep it as 'sticky' if scroll position is less than stopScrollPosition
-  //       stickyElement.style.position = 'sticky';
-  //       stickyElement.style.top = '0'; // Adjust the top offset as needed
-  //     }
-  //   }
-
-  //   window.addEventListener('scroll', handleScroll);
-  // }
-
-  // if (window.innerWidth < 800) {
-  //   toggleStickyAtScroll('.sticky-container', 80);
-  // }
-
-
-  
   useGSAP(() => {
     const cards = cardRefs.current;
     const totalScrollHeight = window.innerHeight * 3;
-    const positions = [14, 38, 62, 86];
-    const rotations = window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0]
-    
+    const positions =
+      window.innerWidth > 800 ? [14, 38, 62, 86] : [14, 38, 62, 86];
+    const rotations =
+      window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
+
+    if (window.innerWidth <= 800) {
+      cards.forEach((card, index) => {
+        card.style.top = `${index * 70}%`; // 20% or any desired spacing
+      });
+    }
     // pin cards section
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: window.innerWidth > 800? true : true,
+      pin: true,
       pinSpacing: true,
       pinType: "absolute", // Pinned element will be fixed to the viewport
       scroller: document.querySelector(".main-body"),
     });
+
+    if (window.innerWidth > 800) {
+      cards.forEach((card, index) => {
+        const params = {
+          left: `${positions[index]}%`,
+          rotation: `${rotations[index]}`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: container.current.querySelector(".cards"),
+            start: "top top",
+            end: () => `+=${window.innerHeight}`,
+            scrub: 0.5,
+            id: `spread-${index}`,
+            scroller: document.querySelector(".main-body"),
+          },
+        };
+        gsap.to(card, params);
+      });
+    }
     // spread cards
-    cards.forEach((card, index) => {
-      const params =
-        window.innerWidth > 800
-          ? {
-              left: `${positions[index]}%`,
-              rotation: `${rotations[index]}`,
-              ease: "none",
-              scrollTrigger: {
-                trigger: container.current.querySelector(".cards"),
-                start: "top top",
-                end: () => `+=${window.innerHeight}`,
-                scrub: 0.5,
-                id: `spread-${index}`,
-                scroller: document.querySelector(".main-body"),
-              },
-            }
-          : {
-              top: `${positions[index] * 2}%`,
-              rotation: `${rotations[index]}`,
-              ease: "power1.out",
-              scrollTrigger: {
-                trigger: container.current.querySelector(".cards"),
-                start: "top top",
-                end: () => `+=${window.innerHeight}`,
-                scrub: 1,
-                id: `spread-${index}`,
-                scroller: document.querySelector(".main-body"),
-              },
-            };
-      gsap.to(card, params);
-    });
+    // cards.forEach((card, index) => {
+    //   const params =
+    //     window.innerWidth > 800
+    //       ? {
+    //           left: `${positions[index]}%`,
+    //           rotation: `${rotations[index]}`,
+    //           ease: "none",
+    //           scrollTrigger: {
+    //             trigger: container.current.querySelector(".cards"),
+    //             start: "top top",
+    //             end: () => `+=${window.innerHeight}`,
+    //             scrub: 0.5,
+    //             id: `spread-${index}`,
+    //             scroller: document.querySelector(".main-body"),
+    //           },
+    //         }
+    //       : {
+    //           top: `0%`, //`${positions[index] * 2}%`
+    //           rotation: `${rotations[index]}`,
+    //           ease: "power1.out",
+    //           scrollTrigger: {
+    //             trigger: container.current.querySelector(".cards"),
+    //             start: "top top",
+    //             end: () => `+=${window.innerHeight}`,
+    //             scrub: 1,
+    //             id: `spread-${index}`,
+    //             scroller: document.querySelector(".main-body"),
+    //           },
+    //         };
+    //   gsap.to(card, params);
+    // });
+
     // rotate cards
     cards.forEach((card, index) => {
       const frontEl = card.querySelector(".flip-card-front");
@@ -114,7 +113,7 @@ const Home = () => {
       timeline.to(
         backEl,
         { rotateY: 0, ease: "power1.out", duration: totalDuration },
-        0
+        0,
       );
       timeline.to(
         card,
@@ -125,7 +124,7 @@ const Home = () => {
           ease: "power1.out",
           duration: totalDuration,
         },
-        0
+        0,
       );
 
       ScrollTrigger.create({
@@ -146,10 +145,6 @@ const Home = () => {
     }),
       { scope: container };
   });
-
-
-
-
 
   useEffect(() => {
     return () => {
@@ -278,6 +273,7 @@ const Home = () => {
               id={`card-${index + 1}`}
               frontSrc="/card-front.png"
               frontAlt="Card Image"
+              topPosition={50 + index * 10}
               backText={`How it works ${index + 1}`}
               ref={(el) => (cardRefs.current[index] = el)}
             />
