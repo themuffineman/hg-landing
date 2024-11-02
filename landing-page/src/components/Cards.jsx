@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import "../pages/globals.css";
 
-const Card = forwardRef(({ id, frontSrc, frontAlt, backText, topPosition }, ref) => {
+const Card = forwardRef(({ id, frontSrc, frontAlt, backText }, ref) => {
   return (
     <div className={`card `} id={id} ref={ref}>
       <div className="card-wrapper">

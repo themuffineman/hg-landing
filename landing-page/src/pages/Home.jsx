@@ -19,7 +19,8 @@ const Home = () => {
 
   useGSAP(() => {
     const cards = cardRefs.current;
-    const totalScrollHeight = window.innerHeight * 3;
+    const isMobile = window.innerWidth <= 800;
+    const totalScrollHeight = isMobile ? window.innerHeight * 1.5 : window.innerHeight * 3;
     const positions =
       window.innerWidth > 800 ? [14, 38, 62, 86] : [14, 38, 62, 86];
     const rotations =
@@ -37,7 +38,6 @@ const Home = () => {
       end: () => `+=${totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
-      pinType: "absolute", // Pinned element will be fixed to the viewport
       scroller: document.querySelector(".main-body"),
     });
 
@@ -59,38 +59,7 @@ const Home = () => {
         gsap.to(card, params);
       });
     }
-    // spread cards
-    // cards.forEach((card, index) => {
-    //   const params =
-    //     window.innerWidth > 800
-    //       ? {
-    //           left: `${positions[index]}%`,
-    //           rotation: `${rotations[index]}`,
-    //           ease: "none",
-    //           scrollTrigger: {
-    //             trigger: container.current.querySelector(".cards"),
-    //             start: "top top",
-    //             end: () => `+=${window.innerHeight}`,
-    //             scrub: 0.5,
-    //             id: `spread-${index}`,
-    //             scroller: document.querySelector(".main-body"),
-    //           },
-    //         }
-    //       : {
-    //           top: `0%`, //`${positions[index] * 2}%`
-    //           rotation: `${rotations[index]}`,
-    //           ease: "power1.out",
-    //           scrollTrigger: {
-    //             trigger: container.current.querySelector(".cards"),
-    //             start: "top top",
-    //             end: () => `+=${window.innerHeight}`,
-    //             scrub: 1,
-    //             id: `spread-${index}`,
-    //             scroller: document.querySelector(".main-body"),
-    //           },
-    //         };
-    //   gsap.to(card, params);
-    // });
+    
 
     // rotate cards
     cards.forEach((card, index) => {
@@ -273,7 +242,6 @@ const Home = () => {
               id={`card-${index + 1}`}
               frontSrc="/card-front.png"
               frontAlt="Card Image"
-              topPosition={50 + index * 10}
               backText={`How it works ${index + 1}`}
               ref={(el) => (cardRefs.current[index] = el)}
             />
