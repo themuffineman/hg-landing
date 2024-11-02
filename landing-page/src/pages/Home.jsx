@@ -36,8 +36,8 @@ const Home = () => {
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: true,
-      pinSpacing: true,
+      pin: isMobile ? false: true,
+      pinSpacing: isMobile ? false: true,
       scroller: document.querySelector(".main-body"),
     });
 
