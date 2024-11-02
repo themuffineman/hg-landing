@@ -14,13 +14,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
   const container = useRef(null);
+  const CardContainer = useRef(null);
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
+  useEffect(() => {
+    const cardContainer = CardContainer.current;
+    const stopStickyScrollPercent = 0.8; // Adjust this percentage as needed (80% from the bottom)
+    const mainContainer = document.querySelector(".main-body");
 
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const scrollLimit =
+        document.documentElement.scrollHeight * stopStickyScrollPercent;
+      console.log("scroll limit: ", scrollLimit)
+      if (scrollPosition >= scrollLimit) {
+        cardContainer.style.position = "relative"; // Disable sticky
+      } else {
+        cardContainer.style.position = "sticky"; // Re-enable sticky if above limit
+      }
+    };
+
+    if (window.innerWidth <= 800) {
+      mainContainer.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      mainContainer.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   useGSAP(() => {
     const cards = cardRefs.current;
     const isMobile = window.innerWidth <= 800;
-    const totalScrollHeight = isMobile ? window.innerHeight * 1.5 : window.innerHeight * 3;
+    const totalScrollHeight = isMobile
+      ? window.innerHeight * 1.5
+      : window.innerHeight * 3;
     const positions =
       window.innerWidth > 800 ? [14, 38, 62, 86] : [14, 38, 62, 86];
     const rotations =
@@ -36,8 +63,8 @@ const Home = () => {
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: isMobile ? false: true,
-      pinSpacing: isMobile ? false: true,
+      pin: isMobile ? false : true,
+      pinSpacing: isMobile ? false : true,
       scroller: document.querySelector(".main-body"),
     });
 
@@ -59,7 +86,6 @@ const Home = () => {
         gsap.to(card, params);
       });
     }
-    
 
     // rotate cards
     cards.forEach((card, index) => {
@@ -235,7 +261,7 @@ const Home = () => {
             How to create yours
           </h2>
         </section>
-        <section className="cards">
+        <section ref={CardContainer} className="cards">
           {[...Array(4)].map((_, index) => (
             <Card
               key={index}
