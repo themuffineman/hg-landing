@@ -71,7 +71,7 @@ const Home = () => {
       const staggerOffset = index * 0.05;
       const startOffset = 1 / 3 + staggerOffset;
       const endOffset = 2 / 3 + staggerOffset;
-      const totalDuration = isMobile ? (endOffset - startOffset) * 0.10 : endOffset - startOffset;
+      const totalDuration = isMobile ? (endOffset - startOffset) * 0.60 : endOffset - startOffset;
 
       // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
       const timeline = gsap.timeline({ paused: true });
