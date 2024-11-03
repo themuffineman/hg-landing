@@ -17,32 +17,7 @@ const Home = () => {
   const CardContainer = useRef(null);
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
-  useEffect(() => {
-    const cardContainer = CardContainer.current;
-    const stopStickyScrollPercent = 0.8; // Adjust this percentage as needed (80% from the bottom)
-    const mainContainer = document.querySelector(".main-body");
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const scrollLimit =
-        document.documentElement.scrollHeight * stopStickyScrollPercent;
-      console.log("scroll limit: ", scrollLimit)
-      if (scrollPosition >= scrollLimit) {
-        cardContainer.style.position = "relative"; // Disable sticky
-      } else {
-        cardContainer.style.position = "sticky"; // Re-enable sticky if above limit
-        cardContainer.style.top = "0";
-      }
-    };
-
-    if (window.innerWidth <= 800) {
-      mainContainer.addEventListener("scroll", handleScroll);
-    }
-
-    return () => {
-      mainContainer.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  
   useGSAP(() => {
     const cards = cardRefs.current;
     const isMobile = window.innerWidth <= 800;
@@ -50,13 +25,13 @@ const Home = () => {
       ? window.innerHeight * 1.5
       : window.innerHeight * 3;
     const positions =
-      window.innerWidth > 800 ? [14, 38, 62, 86] : [14, 38, 62, 86];
+      window.innerWidth > 800 ? [14, 38, 62, 86] : [50, 50, 50, 50];
     const rotations =
       window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
 
     if (window.innerWidth <= 800) {
       cards.forEach((card, index) => {
-        card.style.top = `${index * 70}%`; // 20% or any desired spacing
+        card.style.top = `${(index+1) * 70}%`; // 20% or any desired spacing
       });
     }
     // pin cards section
@@ -64,17 +39,17 @@ const Home = () => {
       trigger: container.current.querySelector(".cards"),
       start: "top top",
       end: () => `+=${totalScrollHeight}`,
-      pin: isMobile ? false : true,
-      pinSpacing: isMobile ? false : true,
+      pin: isMobile ? true : true,
+      pinSpacing: isMobile ? true : true,
       scroller: document.querySelector(".main-body"),
     });
 
-    if (window.innerWidth > 800) {
+    if(window.innerWidth > 800) {
       cards.forEach((card, index) => {
         const params = {
           left: `${positions[index]}%`,
           rotation: `${rotations[index]}`,
-          ease: "none",
+          ease: "power1.out",
           scrollTrigger: {
             trigger: container.current.querySelector(".cards"),
             start: "top top",
@@ -96,7 +71,7 @@ const Home = () => {
       const staggerOffset = index * 0.05;
       const startOffset = 1 / 3 + staggerOffset;
       const endOffset = 2 / 3 + staggerOffset;
-      const totalDuration = endOffset - startOffset;
+      const totalDuration = isMobile ? (endOffset - startOffset) * 0.10 : endOffset - startOffset;
 
       // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
       const timeline = gsap.timeline({ paused: true });
@@ -142,11 +117,7 @@ const Home = () => {
       { scope: container };
   });
 
-  useEffect(() => {
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+
 
   return (
     <div className="main-body " ref={container}>
