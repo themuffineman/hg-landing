@@ -25,7 +25,7 @@ const Home = () => {
       ? window.innerHeight * 1.5
       : window.innerHeight * 3;
     const positions =
-      window.innerWidth > 800 ? [14, 38, 62, 86] : [50, 50, 50, 50];
+      window.innerWidth > 800 ? [14, 38, 62, 86] : [38, 86, 134, 182];
     const rotations =
       window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
 
@@ -48,6 +48,24 @@ const Home = () => {
       cards.forEach((card, index) => {
         const params = {
           left: `${positions[index]}%`,
+          rotation: `${rotations[index]}`,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: container.current.querySelector(".cards"),
+            start: "top top",
+            end: () => `+=${window.innerHeight}`,
+            scrub: 0.5,
+            id: `spread-${index}`,
+            scroller: document.querySelector(".main-body"),
+          },
+        };
+        gsap.to(card, params);
+      });
+    }
+    if(window.innerWidth < 800) {
+      cards.forEach((card, index) => {
+        const params = {
+          top: `${positions[index]}%`,
           rotation: `${rotations[index]}`,
           ease: "power1.out",
           scrollTrigger: {
