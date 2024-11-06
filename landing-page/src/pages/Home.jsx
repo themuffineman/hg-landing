@@ -2,7 +2,7 @@ import santStanding from "../assets/images/santa_standing_on_sled.png";
 import torrus from "../assets/images/Torus_array.png";
 import styles from "./components.module.css";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Card from "../components/Cards";
 import { Gift } from "../models/Gift";
 import gsap from "gsap";
