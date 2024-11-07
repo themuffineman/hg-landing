@@ -29,16 +29,10 @@ const Home = () => {
     const rotations =
       window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
 
-    // if (window.innerWidth <= 800) {
-    //   cards.forEach((card, index) => {
-    //     card.style.top = `${(index+1) * 70}%`; // 20% or any desired spacing
-    //   });
-    // }
-    // pin cards section
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
-      end: () => `+=${isMobile ? totalScrollHeight*0.5:totalScrollHeight}`,
+      end: () => `+=${isMobile ? totalScrollHeight*0.6:totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
       scroller: document.querySelector(".main-body"),
