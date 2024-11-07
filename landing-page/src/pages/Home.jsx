@@ -32,7 +32,7 @@ const Home = () => {
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
-      end: () => `+=${isMobile ? totalScrollHeight*0.6:totalScrollHeight}`,
+      end: () => `+=${isMobile ? totalScrollHeight*0.4:totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
       scroller: document.querySelector(".main-body"),
