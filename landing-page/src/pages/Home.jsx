@@ -22,7 +22,7 @@ const Home = () => {
     const cards = cardRefs.current;
     const isMobile = window.innerWidth <= 800;
     const totalScrollHeight = isMobile
-      ? window.innerHeight * 4
+      ? window.innerHeight * 1.5
       : window.innerHeight * 3;
     const positions =
       window.innerWidth > 800 ? [14, 38, 62, 86] : [38, 86, 134, 182];
