@@ -13,17 +13,22 @@ import "./globals.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  const [innerHeight, setInnerHeight] = useState(window.innerHeight)
   const container = useRef(null);
   const CardContainer = useRef(null);
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
+
+  useEffect(()=>{
+    setInnerHeight(window.innerHeight)
+  })
   
   useGSAP(() => {
     const cards = cardRefs.current;
     const isMobile = window.innerWidth <= 800;
     const totalScrollHeight = isMobile
-      ? window.innerHeight * 2
-      : window.innerHeight * 3;
+      ? innerHeight * 2
+      : innerHeight * 3;
     const positions =
       window.innerWidth > 800 ? [14, 38, 62, 86] : [38, 86, 134, 182];
     const rotations =
@@ -47,7 +52,7 @@ const Home = () => {
           scrollTrigger: {
             trigger: container.current.querySelector(".cards"),
             start: "top top",
-            end: () => `+=${window.innerHeight}`,
+            end: () => `+=${innerHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
             scroller: document.querySelector(".main-body"),
@@ -65,7 +70,7 @@ const Home = () => {
           scrollTrigger: {
             trigger: container.current.querySelector(".cards"),
             start: "top top",
-            end: () => `+=${window.innerHeight}`,
+            end: () => `+=${innerHeight}`,
             scrub: 0.5,
             id: `spread-${index}`,
             scroller: document.querySelector(".main-body"),
