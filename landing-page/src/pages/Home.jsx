@@ -43,7 +43,7 @@ const Home = () => {
       scroller: document.querySelector(".main-body"),
     });
 
-    if(window.innerWidth > 800) {
+    if(!isMobile) {
       cards.forEach((card, index) => {
         const params = {
           left: `${positions[index]}%`,
@@ -61,7 +61,7 @@ const Home = () => {
         gsap.to(card, params);
       });
     }
-    if(window.innerWidth < 800) {
+    if(isMobile) {
       cards.forEach((card, index) => {
         const params = {
           top: `${positions[index]}%`,
