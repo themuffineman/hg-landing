@@ -13,22 +13,20 @@ import "./globals.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const [innerHeight, setInnerHeight] = useState(window.innerHeight)
+  const [innerHeight, setInnerHeight] = useState(window.innerHeight);
   const container = useRef(null);
   const CardContainer = useRef(null);
   const cardRefs = useRef([]);
   const POV = window.innerWidth < 500 ? 100 : 75;
 
-  useEffect(()=>{
-    setInnerHeight(window.innerHeight)
-  })
-  
+  useEffect(() => {
+    setInnerHeight(window.innerHeight);
+  });
+
   useGSAP(() => {
     const cards = cardRefs.current;
     const isMobile = window.innerWidth <= 800;
-    const totalScrollHeight = isMobile
-      ? innerHeight * 2
-      : innerHeight * 3;
+    const totalScrollHeight = isMobile ? innerHeight * 2 : innerHeight * 3;
     const positions =
       window.innerWidth > 800 ? [14, 38, 62, 86] : [38, 86, 134, 182];
     const rotations =
@@ -37,13 +35,13 @@ const Home = () => {
     ScrollTrigger.create({
       trigger: container.current.querySelector(".cards"),
       start: "top top",
-      end: () => `+=${isMobile ? totalScrollHeight*0.4:totalScrollHeight}`,
+      end: () => `+=${isMobile ? totalScrollHeight * 0.4 : totalScrollHeight}`,
       pin: true,
       pinSpacing: true,
       scroller: document.querySelector(".main-body"),
     });
 
-    if(!isMobile) {
+    if (!isMobile) {
       cards.forEach((card, index) => {
         const params = {
           left: `${positions[index]}%`,
@@ -61,7 +59,7 @@ const Home = () => {
         gsap.to(card, params);
       });
     }
-    if(isMobile) {
+    if (isMobile) {
       cards.forEach((card, index) => {
         const params = {
           top: `${positions[index]}%`,
@@ -88,7 +86,9 @@ const Home = () => {
       const staggerOffset = index * 0.05;
       const startOffset = 1 / 3 + staggerOffset;
       const endOffset = 2 / 3 + staggerOffset;
-      const totalDuration = isMobile ? (endOffset - startOffset) * 0.5 : endOffset - startOffset;
+      const totalDuration = isMobile
+        ? (endOffset - startOffset) * 0.5
+        : endOffset - startOffset;
 
       // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
       const timeline = gsap.timeline({ paused: true });
@@ -101,7 +101,7 @@ const Home = () => {
       timeline.to(
         backEl,
         { rotateY: 0, ease: "power1.out", duration: totalDuration },
-        0,
+        0
       );
       timeline.to(
         card,
@@ -112,7 +112,7 @@ const Home = () => {
           ease: "power1.out",
           duration: totalDuration,
         },
-        0,
+        0
       );
 
       ScrollTrigger.create({
@@ -133,8 +133,6 @@ const Home = () => {
     }),
       { scope: container };
   });
-
-
 
   return (
     <div className="main-body " ref={container}>
@@ -250,7 +248,7 @@ const Home = () => {
             How to create yours
           </h2>
         </section>
-        <section ref={CardContainer} className="cards">
+        <section ref={CardContainer} className="cards hidden md:block">
           {[...Array(4)].map((_, index) => (
             <Card
               key={index}
@@ -260,6 +258,19 @@ const Home = () => {
               backText={`How it works ${index + 1}`}
               ref={(el) => (cardRefs.current[index] = el)}
             />
+          ))}
+        </section>
+        <section className="md:hidden ">
+          {[...Array(4)].map((_, index) => (
+            <div className="container">
+              <div className="card" id={`card-${index + 1}`}>
+                <div className="back"></div>
+                <div className="front">
+                  <h1>Step</h1>
+                  <p>{index + 1}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </section>
       </div>
