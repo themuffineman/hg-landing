@@ -11,7 +11,6 @@ import { useGSAP } from "@gsap/react";
 import "./globals.css";
 
 gsap.registerPlugin(ScrollTrigger);
-
 const Home = () => {
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
   const container = useRef(null);
@@ -32,16 +31,16 @@ const Home = () => {
     const rotations =
       window.innerWidth > 800 ? [-15, -7.5, 7.5, 15] : [0, 0, 0, 0];
 
-    ScrollTrigger.create({
-      trigger: container.current.querySelector(".cards"),
-      start: "top top",
-      end: () => `+=${isMobile ? totalScrollHeight * 0.4 : totalScrollHeight}`,
-      pin: true,
-      pinSpacing: true,
-      scroller: document.querySelector(".main-body"),
-    });
-
     if (!isMobile) {
+      ScrollTrigger.create({
+        trigger: container.current.querySelector(".cards"),
+        start: "top top",
+        end: () =>
+          `+=${isMobile ? totalScrollHeight * 0.4 : totalScrollHeight}`,
+        pin: true,
+        pinSpacing: true,
+        scroller: document.querySelector(".main-body"),
+      });
       cards.forEach((card, index) => {
         const params = {
           left: `${positions[index]}%`,
@@ -58,80 +57,62 @@ const Home = () => {
         };
         gsap.to(card, params);
       });
-    }
-    if (isMobile) {
+      // rotate cards
       cards.forEach((card, index) => {
-        const params = {
-          top: `${positions[index]}%`,
-          rotation: `${rotations[index]}`,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: container.current.querySelector(".cards"),
-            start: "top top",
-            end: () => `+=${innerHeight}`,
-            scrub: 0.5,
-            id: `spread-${index}`,
-            scroller: document.querySelector(".main-body"),
-          },
-        };
-        gsap.to(card, params);
-      });
-    }
+        const frontEl = card.querySelector(".flip-card-front");
+        const backEl = card.querySelector(".flip-card-back");
 
-    // rotate cards
-    cards.forEach((card, index) => {
-      const frontEl = card.querySelector(".flip-card-front");
-      const backEl = card.querySelector(".flip-card-back");
+        const staggerOffset = index * 0.05;
+        const startOffset = 1 / 3 + staggerOffset;
+        const endOffset = 2 / 3 + staggerOffset;
+        const totalDuration = isMobile
+          ? (endOffset - startOffset) * 0.5
+          : endOffset - startOffset;
 
-      const staggerOffset = index * 0.05;
-      const startOffset = 1 / 3 + staggerOffset;
-      const endOffset = 2 / 3 + staggerOffset;
-      const totalDuration = isMobile
-        ? (endOffset - startOffset) * 0.5
-        : endOffset - startOffset;
+        // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
+        const timeline = gsap.timeline({ paused: true });
 
-      // Pre-calculate rotation values to avoid recalculating them in `onUpdate`
-      const timeline = gsap.timeline({ paused: true });
-
-      timeline.to(frontEl, {
-        rotateY: -180,
-        ease: "power1.out",
-        duration: totalDuration,
-      });
-      timeline.to(
-        backEl,
-        { rotateY: 0, ease: "power1.out", duration: totalDuration },
-        0
-      );
-      timeline.to(
-        card,
-        {
-          xPercent: -50,
-          yPercent: -50,
-          rotate: rotations[index],
+        timeline.to(frontEl, {
+          rotateY: -180,
           ease: "power1.out",
           duration: totalDuration,
-        },
-        0
-      );
+        });
+        timeline.to(
+          backEl,
+          { rotateY: 0, ease: "power1.out", duration: totalDuration },
+          0
+        );
+        timeline.to(
+          card,
+          {
+            xPercent: -50,
+            yPercent: -50,
+            rotate: rotations[index],
+            ease: "power1.out",
+            duration: totalDuration,
+          },
+          0
+        );
 
-      ScrollTrigger.create({
-        trigger: container.current.querySelector(".cards"),
-        start: "top top",
-        end: () => `+=${totalScrollHeight}`,
-        scrub: window.innerWidth > 800 ? 2 : 2,
-        id: `rotate-flip-${index}`,
-        scroller: document.querySelector(".main-body"),
-        onUpdate: (self) => {
-          const progress = self.progress;
-          if (progress >= startOffset && progress <= endOffset) {
-            const animationProgress = (progress - startOffset) / totalDuration;
-            timeline.progress(animationProgress);
-          }
-        },
-      });
-    }),
-      { scope: container };
+        ScrollTrigger.create({
+          trigger: container.current.querySelector(".cards"),
+          start: "top top",
+          end: () => `+=${totalScrollHeight}`,
+          scrub: window.innerWidth > 800 ? 2 : 2,
+          id: `rotate-flip-${index}`,
+          scroller: document.querySelector(".main-body"),
+          onUpdate: (self) => {
+            const progress = self.progress;
+            if (progress >= startOffset && progress <= endOffset) {
+              const animationProgress =
+                (progress - startOffset) / totalDuration;
+              timeline.progress(animationProgress);
+            }
+          },
+        });
+      }),
+        { scope: container };
+    }
   });
 
   return (
@@ -260,12 +241,12 @@ const Home = () => {
             />
           ))}
         </section>
-        <section className="md:hidden ">
+        <section className="md:hidden mt-10 ">
           {[...Array(4)].map((_, index) => (
-            <div className="container">
-              <div className="card" id={`card-${index + 1}`}>
-                <div className="back"></div>
-                <div className="front">
+            <div className="card-container">
+              <div className="card-mobile" id={`card-${index + 1}`}>
+                <div className="back-mobile"></div>
+                <div className="front-mobile">
                   <h1>Step</h1>
                   <p>{index + 1}</p>
                 </div>
