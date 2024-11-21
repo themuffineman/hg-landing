@@ -222,7 +222,11 @@ const Home = () => {
               elit.
             </div>
             <button className={`${styles.pushable}`}>
-              <span className={`${styles.front}`}>Create Yours Today</span>
+              <span className={`${styles.front}`}>
+                <a href="https://newversion-84536.bubbleapps.io/version-test/login_page">
+                  Create Yours Today
+                </a>
+              </span>
             </button>
           </div>
           <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
