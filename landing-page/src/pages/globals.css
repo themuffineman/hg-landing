@@ -64,7 +64,7 @@ body {
     transform-origin: center;
     animation: rotateCard linear forwards;
     animation-timeline: view();
-    animation-range: entry;
+    animation-range: entry 300px 500px;
   }
 
   .front-mobile,
