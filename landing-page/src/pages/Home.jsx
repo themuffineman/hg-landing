@@ -248,17 +248,20 @@ const Home = () => {
           })}
         </section>
         <section className="md:hidden mt-10 ">
-          {[...Array(4)].map((_, index) => (
-            <div className="card-container">
-              <div className="card-mobile" id={`card-${index + 1}`}>
-                <div className="back-mobile"></div>
-                <div className="front-mobile">
-                  <h1>Step</h1>
-                  <p>{index + 1}</p>
+          {[...Array(4)].map((_, index) => {
+            const cardKey = `step${index + 1}`
+            return(
+              <div className="card-container">
+                <div className="card-mobile" id={`card-${index + 1}`}>
+                  <div className="back-mobile"></div>
+                  <div className="front-mobile">
+                    <h1>Step</h1>
+                    <p>copy.howItWorks[cardKey]</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </section>
       </div>
     </div>
