@@ -73,7 +73,7 @@ export function Gift() {
   return (
     <>
       {/* Add basic lighting */}
-      <ambientLight intensity={3.5} />
+      <ambientLight intensity={6.5} />
       <directionalLight position={[10, 10, 10]} />
 
       <a.group
