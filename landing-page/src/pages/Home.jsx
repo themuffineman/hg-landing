@@ -256,7 +256,7 @@ const Home = () => {
                   <div className="back-mobile"></div>
                   <div className="front-mobile">
                     <h1>Step</h1>
-                    <p>copy.howItWorks[cardKey]</p>
+                    <p>{copy.howItWorks[cardKey]}</p>
                   </div>
                 </div>
               </div>
