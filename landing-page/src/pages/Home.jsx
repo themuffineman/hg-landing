@@ -8,6 +8,7 @@ import { Gift } from "../models/Gift";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import {copy} from "../../websiteCopy/copy"
 import "./globals.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -217,9 +218,7 @@ const Home = () => {
           </div>
           <div className="flex flex-col items-center gap-10 z-50">
             <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              neque justo. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit.
+              {copy.heroDescription}
             </div>
             <button className={`${styles.pushable}`}>
               <span className={`${styles.front}`}>
@@ -234,16 +233,19 @@ const Home = () => {
           </h2>
         </section>
         <section ref={CardContainer} className="cards hidden md:block">
-          {[...Array(4)].map((_, index) => (
-            <Card
-              key={index}
-              id={`card-${index + 1}`}
-              frontSrc="/card-front.png"
-              frontAlt="Card Image"
-              backText={`How it works ${index + 1}`}
-              ref={(el) => (cardRefs.current[index] = el)}
-            />
-          ))}
+          {[...Array(4)].map((_, index) => {
+            const cardKey = `step${index + 1}`
+            return(
+              <Card
+                key={index}
+                id={`card-${index + 1}`}
+                frontSrc="/card-front.png"
+                frontAlt="Card Image"
+                backText={copy.howItWorks[cardKey]}
+                ref={(el) => (cardRefs.current[index] = el)}
+              />
+            )
+          })}
         </section>
         <section className="md:hidden mt-10 ">
           {[...Array(4)].map((_, index) => (
