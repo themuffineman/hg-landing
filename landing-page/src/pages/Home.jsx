@@ -215,7 +215,7 @@ const Home = () => {
             >
               <Gift />
             </Canvas>
-          </div>
+          </div>`
           <div className="flex flex-col items-center gap-10 z-50">
             <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
               {copy.heroDescription}
@@ -262,6 +262,9 @@ const Home = () => {
               </div>
             )
           })}
+        </section>
+        <section className="bg-purple-950">
+
         </section>
       </div>
     </div>
