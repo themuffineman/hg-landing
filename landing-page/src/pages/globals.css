@@ -21,7 +21,7 @@ body {
 }
 .main-body {
   width: 100%;
-  height: max-content;
+  height: 100vh;
   overflow-y: scroll;
   font-family: "Instrument Serif";
 }
@@ -47,35 +47,8 @@ body {
     align-items: center;
     gap: 20px;
   }
-  @media (max-width: 500px){
-    footer{
-      flex-direction: column;
-      justify-content:start;
-      gap: 1.5rem;
-    }
-    .links-section{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-    .torrus{
-      display: none;
-    }
-  }
-  .torrus{
-    left: 9rem;
-  }
-  footer{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .links-section{
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-  }
+  
+  
 
   @keyframes rotateCard {
     to {
@@ -117,6 +90,36 @@ body {
     gap: 1rem;
   }
 }
+@media (max-width: 500px){
+  footer{
+    flex-direction: column;
+    justify-content: start;
+    gap: 1.5rem;
+  }
+  .links-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .torrus{
+    left: 1rem;
+  }
+}
+
+.torrus{
+  left: 9rem;
+}
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .links-section{
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
 .card-img {
   width: 100%;
   height: 100%;

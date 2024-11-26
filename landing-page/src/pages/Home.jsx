@@ -311,7 +311,7 @@ const Home = () => {
             )
           })}
         </section>
-      <footer  className=" p-5 justify-self-end bg-blue-950  w-full h-[350px]">
+      <footer  className=" p-5 justify-self-end bg-purple-950  w-full">
         <h3 style={{ fontFamily: "'Fontdiner Swanky', cursive" }} className="text-4xl text-yellow-400 "><span className="text-white">Hideous</span> Gifts</h3>
         <div className="links-section flex gap-10 items-center">
           <div className="flex flex-col items-start gap-2">
