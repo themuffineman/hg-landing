@@ -40,6 +40,7 @@ const App = () => {
         </Canvas>
       </div>
       <Home />
+      
     </main>
   );
 };
