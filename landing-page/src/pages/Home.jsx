@@ -8,7 +8,8 @@ import { Gift } from "../models/Gift";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import {copy} from "../../websiteCopy/copy"
+import { copy } from "../../websiteCopy/copy";
+import { images } from "../../cardImages/cardImages";
 import "./globals.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,53 +24,57 @@ const Home = () => {
     setInnerHeight(window.innerHeight);
   });
   function addScrollRotationListener() {
-    const elements = document.querySelectorAll('.card-mobile');
+    const elements = document.querySelectorAll(".card-mobile");
     const scrollContainer = document.querySelector(".main-body");
 
     let lastScrollPosition = scrollContainer.scrollTop; // Track the last scroll position
 
     const rotateElement = () => {
-        const currentScrollPosition = scrollContainer.scrollTop; // Current scroll position
-        const isScrollingDown = currentScrollPosition > lastScrollPosition;
+      const currentScrollPosition = scrollContainer.scrollTop; // Current scroll position
+      const isScrollingDown = currentScrollPosition > lastScrollPosition;
 
-        elements.forEach((element, index) => {
-            const rect = element.getBoundingClientRect();
+      elements.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
 
-            // Trigger rotation when the element is 50px from the top of the viewport
-            const triggerPoint = 700 + (index * 50);
-            const maxRotation = 180;
+        // Trigger rotation when the element is 50px from the top of the viewport
+        const triggerPoint = 700 + index * 50;
+        const maxRotation = 180;
 
-            if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
-                // Calculate the progress from the trigger point to when the element fully exits the viewport
-                const scrollProgress = Math.min(1, Math.max(0, (triggerPoint - rect.top) / rect.height));
-                const rotationChange = scrollProgress * maxRotation;
+        if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
+          // Calculate the progress from the trigger point to when the element fully exits the viewport
+          const scrollProgress = Math.min(
+            1,
+            Math.max(0, (triggerPoint - rect.top) / rect.height)
+          );
+          const rotationChange = scrollProgress * maxRotation;
 
-                // Get current rotation value
-                const currentRotation = parseFloat(
-                    element.style.transform.replace(/rotateY\((.*)deg\)/, "$1")
-                ) || 0;
+          // Get current rotation value
+          const currentRotation =
+            parseFloat(
+              element.style.transform.replace(/rotateY\((.*)deg\)/, "$1")
+            ) || 0;
 
-                // Adjust rotation based on scroll direction
-                const newRotation = isScrollingDown
-                    ? Math.min(maxRotation, currentRotation + rotationChange)
-                    : Math.max(0, currentRotation - rotationChange);
+          // Adjust rotation based on scroll direction
+          const newRotation = isScrollingDown
+            ? Math.min(maxRotation, currentRotation + rotationChange)
+            : Math.max(0, currentRotation - rotationChange);
 
-                element.style.transform = `rotateY(${newRotation}deg)`;
-            } else if (rect.top > triggerPoint) {
-                // Reset rotation if the element is not yet at the trigger point
-                element.style.transform = "rotateY(0deg)";
-            }
-        });
+          element.style.transform = `rotateY(${newRotation}deg)`;
+        } else if (rect.top > triggerPoint) {
+          // Reset rotation if the element is not yet at the trigger point
+          element.style.transform = "rotateY(0deg)";
+        }
+      });
 
-        lastScrollPosition = currentScrollPosition; // Update the last scroll position
+      lastScrollPosition = currentScrollPosition; // Update the last scroll position
     };
 
     scrollContainer.addEventListener("scroll", rotateElement);
-}
+  }
 
-  useEffect(()=>{
-    addScrollRotationListener()
-  },[])
+  useEffect(() => {
+    addScrollRotationListener();
+  }, []);
 
   useGSAP(() => {
     const cards = cardRefs.current;
@@ -165,7 +170,10 @@ const Home = () => {
   });
 
   return (
-    <div className="main-body overflow-x-hidden flex flex-col justify-between " ref={container}>
+    <div
+      className="main-body overflow-x-hidden flex flex-col justify-between "
+      ref={container}
+    >
       <div className="h-[520vh]">
         <section className="relative h-max min-h-[100vh] flex flex-col gap-4 items-center">
           <div className=" pt-10 flex items-center justify-center">
@@ -263,7 +271,8 @@ const Home = () => {
             >
               <Gift />
             </Canvas>
-          </div>`
+          </div>
+          `
           <div className="flex flex-col items-center gap-10 z-50">
             <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
               {copy.heroDescription}
@@ -282,8 +291,8 @@ const Home = () => {
         </section>
         <section ref={CardContainer} className="cards hidden md:block">
           {[...Array(4)].map((_, index) => {
-            const cardKey = `step${index + 1}`
-            return(
+            const cardKey = `step${index + 1}`;
+            return (
               <Card
                 key={index}
                 id={`card-${index + 1}`}
@@ -291,14 +300,15 @@ const Home = () => {
                 frontAlt="Card Image"
                 backText={copy.howItWorks[cardKey]}
                 ref={(el) => (cardRefs.current[index] = el)}
+                imgUrl={images[index]}
               />
-            )
+            );
           })}
         </section>
         <section className="md:hidden mt-10 ">
           {[...Array(4)].map((_, index) => {
-            const cardKey = `step${index + 1}`
-            return(
+            const cardKey = `step${index + 1}`;
+            return (
               <div key={cardKey} className="card-container">
                 <div className="card-mobile" id={`card-${index + 1}`}>
                   <div className="back-mobile"></div>
@@ -308,34 +318,63 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            )
+            );
           })}
         </section>
-      <footer  className=" p-5 justify-self-end bg-purple-950  w-full">
-        <h3 style={{ fontFamily: "'Fontdiner Swanky', cursive" }} className="text-4xl text-yellow-400 "><span className="text-white">Hideous</span> Gifts</h3>
-        <div className="links-section flex gap-10 items-center">
-          <div className="flex flex-col items-start gap-2">
-            <div className="text-white text-base font-medium">Socials</div>
-            <div>
-              <ul>
-                <li className=" hover:underline text-sm text-white"><a href="https://Instagram.com" tabIndex={"_blank"}>Instagram</a></li>
-                <li className=" hover:underline text-sm text-white"><a href="https://Facebook.com" tabIndex={"_blank"}>Facebook</a></li>
-                <li className=" hover:underline text-sm text-white"><a href="https://TikTok.com" tabIndex={"_blank"}>TikTok</a></li>
-              </ul>
+        <footer className=" p-5 justify-self-end bg-purple-950  w-full">
+          <h3
+            style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
+            className="text-4xl text-yellow-400 "
+          >
+            <span className="text-white">Hideous</span> Gifts
+          </h3>
+          <div className="links-section flex gap-10 items-center">
+            <div className="flex flex-col items-start gap-2">
+              <div className="text-white text-base font-medium">Socials</div>
+              <div>
+                <ul>
+                  <li className=" hover:underline text-sm text-white">
+                    <a href="https://Instagram.com" tabIndex={"_blank"}>
+                      Instagram
+                    </a>
+                  </li>
+                  <li className=" hover:underline text-sm text-white">
+                    <a href="https://Facebook.com" tabIndex={"_blank"}>
+                      Facebook
+                    </a>
+                  </li>
+                  <li className=" hover:underline text-sm text-white">
+                    <a href="https://TikTok.com" tabIndex={"_blank"}>
+                      TikTok
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="flex flex-col items-start gap-2">
+              <div className="text-white text-base font-medium">More Info</div>
+              <div>
+                <ul>
+                  <li className=" hover:underline text-sm text-white">
+                    <a href="https://Instagram.com" tabIndex={"_blank"}>
+                      About Us
+                    </a>
+                  </li>
+                  <li className=" hover:underline text-sm text-white">
+                    <a href="https://Facebook.com" tabIndex={"_blank"}>
+                      Terms of service
+                    </a>
+                  </li>
+                  <li className=" hover:underline text-sm text-white">
+                    <a href="https://TikTok.com" tabIndex={"_blank"}>
+                      Contact Us
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col items-start gap-2">
-            <div className="text-white text-base font-medium">More Info</div>
-            <div>
-              <ul>
-                <li className=" hover:underline text-sm text-white"><a href="https://Instagram.com" tabIndex={"_blank"}>About Us</a></li>
-                <li className=" hover:underline text-sm text-white"><a href="https://Facebook.com" tabIndex={"_blank"}>Terms of service</a></li>
-                <li className=" hover:underline text-sm text-white"><a href="https://TikTok.com" tabIndex={"_blank"}>Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+        </footer>
       </div>
     </div>
   );

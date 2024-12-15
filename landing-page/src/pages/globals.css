@@ -47,8 +47,6 @@ body {
     align-items: center;
     gap: 20px;
   }
-  
-  
 
   @keyframes rotateCard {
     to {
@@ -90,36 +88,36 @@ body {
     gap: 1rem;
   }
 }
-@media (max-width: 500px){
-  footer{
+@media (max-width: 500px) {
+  footer {
     flex-direction: column;
     justify-content: start;
     gap: 1.5rem;
   }
-  .links-section{
+  .links-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
-  .torrus{
+  .torrus {
     left: 1rem;
   }
 }
 
-.torrus{
+.torrus {
   left: 9rem;
 }
-footer{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .links-section{
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-  }
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.links-section {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
 .card-img {
   width: 100%;
   height: 100%;
@@ -137,12 +135,10 @@ footer{
 }
 
 .card p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: static;
+
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
 }
 
@@ -193,6 +189,8 @@ footer{
   padding: 1em;
   background-color: #fff;
   transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes floating {
