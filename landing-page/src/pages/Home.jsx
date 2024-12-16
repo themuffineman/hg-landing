@@ -313,7 +313,11 @@ const Home = () => {
                 <div className="card-mobile" id={`card-${index + 1}`}>
                   <div className="back-mobile"></div>
                   <div className="front-mobile">
-                    <h1>Step</h1>
+                    <h2>Step {index + 1}</h2>
+                    <img
+                      className="w-[200px] aspect-auto rounded-md"
+                      src={images[index]}
+                    />
                     <p>{copy.howItWorks[cardKey]}</p>
                   </div>
                 </div>

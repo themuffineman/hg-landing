@@ -16,7 +16,10 @@ const Card = forwardRef(({ id, frontSrc, frontAlt, backText, imgUrl }, ref) => {
             />
           </div>
           <div className="flip-card-back flex flex-col items-center justify-between">
-            <img className="w-[150px] aspect-auto rounded-md" src={imgUrl} />
+            <img
+              className="w-[200px] object-cover aspect-auto rounded-md"
+              src={imgUrl}
+            />
             <p>{backText}</p>
           </div>
         </div>
