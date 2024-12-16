@@ -1,1 +1,6 @@
-export const images = ["how-to-1", "how-to-2", "how-to-3", "how-to-4"];
+export const images = [
+  "how-to-1.png",
+  "how-to-2.png",
+  "how-to-3.png",
+  "how-to-4.png",
+];
