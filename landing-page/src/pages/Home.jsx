@@ -37,7 +37,7 @@ const Home = () => {
         const rect = element.getBoundingClientRect();
 
         // Trigger rotation when the element is 50px from the top of the viewport
-        const triggerPoint = 700 + index * 50;
+        const triggerPoint = 250 + index * 50;
         const maxRotation = 180;
 
         if (rect.top <= triggerPoint && rect.bottom >= triggerPoint) {
