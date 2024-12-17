@@ -318,7 +318,9 @@ const Home = () => {
                       className="w-[200px] aspect-auto rounded-md"
                       src={images[index]}
                     />
-                    <p>{copy.howItWorks[cardKey]}</p>
+                    <p className="text-[12px] p-3 text-center">
+                      {copy.howItWorks[cardKey]}
+                    </p>
                   </div>
                 </div>
               </div>
