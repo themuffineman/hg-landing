@@ -1,4 +1,14 @@
 import santStanding from "../assets/images/santa_standing_on_sled.png";
+import howitworks1 from "../assets/images/howitworks1.jpg";
+import howitworks2 from "../assets/images/howitworks2.jpg";
+import howitworks3 from "../assets/images/howitworks3.jpg";
+// import adults1 from "../assets/images/adults1.jpg";
+// import adults2 from "../assets/images/adults2.jpg";
+// import adults3 from "../assets/images/adults3.jpg";
+import kids1 from "../assets/images/kids1.webp";
+import kids2 from "../assets/images/kids2.webp";
+import kids3 from "../assets/images/kids3.webp";
+import kids4 from "../assets/images/kids4.webp";
 import torrus from "../assets/images/Torus_array.png";
 import styles from "./components.module.css";
 import { Canvas } from "@react-three/fiber";
@@ -272,7 +282,7 @@ const Home = () => {
               <Gift />
             </Canvas>
           </div>
-          `
+
           <div className="flex flex-col items-center gap-10 z-50">
             <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
               {copy.heroDescription}
@@ -285,10 +295,104 @@ const Home = () => {
               </span>
             </button>
           </div>
+          <div className="flex flex-col gap-20 py-20 items-center">
+            <h2 className="font-bold text-5xl">For Kids</h2>
+            <div className="grid grid-cols-2 place-items-center justify-center gap-1 grid-flow-row w-[100%]">
+              <img
+                className="w-[50%] rounded-md place-self-end"
+                src={kids1}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={kids2}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-end"
+                src={kids3}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={kids4}
+                alt=""
+              />
+            </div>
+            {/* <h2 className="text-5xl font-bold">For Adults</h2>
+            <div className="grid grid-cols-2 place-items-center justify-center gap-1 grid-flow-row w-[100%]">
+              <img
+                className="w-[50%] rounded-md place-self-end"
+                src={kids1}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={kids2}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-end"
+                src={kids3}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={kids4}
+                alt=""
+              />
+            </div> */}
+          </div>
+          <section>
+            <div class="howitworks-container">
+              <section class="sec">
+                <div className="howitworks w-full flex md:flex-row flex-col-reverse justify-between items-center p-[30px] gap-[20px] ">
+                  <p className="text-[25px] font-bold text-center ">
+                    TROLL YOUR FRIENDS AND FAMILY WITH A CARICATURE VERSION OF
+                    THEMSELVES
+                  </p>
+                  <img
+                    src={howitworks1}
+                    className="w-1/2 min-w-[200px] max-w-[400px] h-auto rounded-md p-[5px] bg-[#a5a5a5] "
+                    alt=""
+                  />
+                </div>
+              </section>
+              <section className="sec">
+                <div className="howitworks2 w-full flex md:flex-row-reverse flex-col-reverse justify-between items-center p-[30px] gap-[20px] ">
+                  <p className="text-[25px] font-bold text-center ">
+                    TEACH YOUR KIDS AMAZING HABITS LIKE EATING VEGETABLES,
+                    WASHING HANDS, KINDNESS AND SO MUCH MORE WITH JUST A FEW
+                    CLICKS
+                  </p>
+                  <img
+                    src={howitworks2}
+                    className="w-1/2 min-w-[200px] max-w-[400px] h-auto rounded-md p-[5px] bg-[#a5a5a5] "
+                    alt=""
+                  />
+                </div>
+              </section>
+              <section className="sec">
+                <div className="howitworks w-full flex md:flex-row flex-col-reverse justify-between items-center p-[30px] gap-[20px] ">
+                  <p className="text-[25px] font-bold text-center ">
+                    GIRLS! LET YOUR BOYFRIENDS KNOW YOU OWN THEM WITH THIS FUN
+                    AND HUMOROUS GIFT WITH YOUR SCARY VERSION THAT SCARES ANYONE
+                    ELSE AWAY
+                  </p>
+                  <img
+                    src={howitworks3}
+                    className="w-1/2 min-w-[200px] max-w-[400px] h-auto rounded-md p-[5px] bg-[#a5a5a5] "
+                    alt=""
+                  />
+                </div>
+              </section>
+            </div>
+          </section>
           <h2 className="text-4xl md:text-5xl w-full text-center tracking-tight mt-20 text-black font-semibold">
             How to create yours
           </h2>
         </section>
+
         <section ref={CardContainer} className="cards hidden md:block">
           {[...Array(4)].map((_, index) => {
             const cardKey = `step${index + 1}`;
