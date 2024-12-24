@@ -362,17 +362,17 @@ const Home = () => {
               <div>
                 <ul>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="https://Instagram.com" tabIndex={"_blank"}>
+                    <a href="/about" tabIndex={"_blank"}>
                       About Us
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="https://Facebook.com" tabIndex={"_blank"}>
+                    <a href=".terms" tabIndex={"_blank"}>
                       Terms of service
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="https://TikTok.com" tabIndex={"_blank"}>
+                    <a href="contact" tabIndex={"_blank"}>
                       Contact Us
                     </a>
                   </li>
