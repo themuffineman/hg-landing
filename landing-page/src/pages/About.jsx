@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-2 p-10">
       <h1 className="text-3xl font-bold">About</h1>
       <p className="overflow-scroll h-[60vh] p-5">
         Welcome to Hideous Gifts, where we turn the ordinary into extraordinary!
