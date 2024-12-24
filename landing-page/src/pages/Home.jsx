@@ -5,13 +5,13 @@ import howitworks3 from "../assets/images/howitworks3.jpg";
 import adult1 from "../assets/images/adult1.jpg";
 import adult2 from "../assets/images/adult2.jpg";
 import adult3 from "../assets/images/adult3.jpg";
-import adult4 from "../assets/images/adult3.jpg";
-import adult5 from "../assets/images/adult3.jpg";
-import adult6 from "../assets/images/adult3.jpg";
-import adult7 from "../assets/images/adult3.jpg";
-import adult8 from "../assets/images/adult3.jpg";
-import adult9 from "../assets/images/adult3.jpg";
-import adult10 from "../assets/images/adult3.jpg";
+import adult4 from "../assets/images/adult4.jpg";
+import adult5 from "../assets/images/adult5.jpg";
+import adult6 from "../assets/images/adult6.jpg";
+import adult7 from "../assets/images/adult7.jpg";
+import adult8 from "../assets/images/adult8.jpg";
+import adult9 from "../assets/images/adult9.jpg";
+import adult10 from "../assets/images/adult10.jpg";
 import kids1 from "../assets/images/kids1.webp";
 import kids2 from "../assets/images/kids2.webp";
 import kids3 from "../assets/images/kids3.webp";
@@ -327,7 +327,7 @@ const Home = () => {
                 alt=""
               />
               <img
-                className="w-[50%] rounded-md place-self-start"
+                className="w-[50%] rounded-md place-self-end"
                 src={kid5}
                 alt=""
               />
@@ -355,7 +355,7 @@ const Home = () => {
                 alt=""
               />
               <img
-                className="w-[50%] rounded-md place-self-start"
+                className="w-[50%] rounded-md place-self-end"
                 src={adult5}
                 alt=""
               />
@@ -365,7 +365,7 @@ const Home = () => {
                 alt=""
               />
               <img
-                className="w-[50%] rounded-md place-self-start"
+                className="w-[50%] rounded-md place-self-end"
                 src={adult7}
                 alt=""
               />
@@ -375,7 +375,7 @@ const Home = () => {
                 alt=""
               />
               <img
-                className="w-[50%] rounded-md place-self-start"
+                className="w-[50%] rounded-md place-self-end"
                 src={adult9}
                 alt=""
               />
