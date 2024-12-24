@@ -469,7 +469,7 @@ const Home = () => {
             );
           })}
         </section>
-        <button className={`${styles.pushable} m-10`}>
+        <button className={`${styles.pushable} m-10 self-center`}>
           <span className={`${styles.front}`}>
             <a target="_blank" href="https://app.hideousgifts.com">
               Create Yours Today
