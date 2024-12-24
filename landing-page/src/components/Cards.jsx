@@ -20,7 +20,7 @@ const Card = forwardRef(({ id, frontSrc, frontAlt, backText, imgUrl }, ref) => {
               className="w-[200px] object-cover aspect-auto rounded-md"
               src={imgUrl}
             />
-            <p className="text-[30px] p-3 text-center">{backText}</p>
+            <p className="text-3xl p-3 text-center">{backText}</p>
           </div>
         </div>
       </div>

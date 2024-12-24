@@ -292,7 +292,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col items-center gap-10 z-50">
-            <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-xl">
+            <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-[25px]">
               {copy.heroDescription}
             </div>
             <button className={`${styles.pushable}`}>
@@ -482,17 +482,26 @@ const Home = () => {
               <div>
                 <ul>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="https://Instagram.com" tabIndex={"_blank"}>
+                    <a
+                      href="https://Instagram.com/hideous_gifts"
+                      tabIndex={"_blank"}
+                    >
                       Instagram
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="https://Facebook.com" tabIndex={"_blank"}>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61571011850044"
+                      tabIndex={"_blank"}
+                    >
                       Facebook
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="https://TikTok.com" tabIndex={"_blank"}>
+                    <a
+                      href="https://TikTok.com/@hideous_gifts"
+                      tabIndex={"_blank"}
+                    >
                       TikTok
                     </a>
                   </li>
