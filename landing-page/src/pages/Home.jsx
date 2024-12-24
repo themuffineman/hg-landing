@@ -460,7 +460,7 @@ const Home = () => {
                       className="w-[200px] aspect-auto rounded-md"
                       src={images[index]}
                     />
-                    <p className="text-[12px] p-3 text-center">
+                    <p className="text-[18px] p-3 text-center">
                       {copy.howItWorks[cardKey]}
                     </p>
                   </div>
