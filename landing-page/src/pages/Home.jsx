@@ -2,13 +2,21 @@ import santStanding from "../assets/images/santa_standing_on_sled.png";
 import howitworks1 from "../assets/images/howitworks1.jpg";
 import howitworks2 from "../assets/images/howitworks2.jpg";
 import howitworks3 from "../assets/images/howitworks3.jpg";
-// import adults1 from "../assets/images/adults1.jpg";
-// import adults2 from "../assets/images/adults2.jpg";
-// import adults3 from "../assets/images/adults3.jpg";
+import adult1 from "../assets/images/adult1.jpg";
+import adult2 from "../assets/images/adult2.jpg";
+import adult3 from "../assets/images/adult3.jpg";
+import adult4 from "../assets/images/adult3.jpg";
+import adult5 from "../assets/images/adult3.jpg";
+import adult6 from "../assets/images/adult3.jpg";
+import adult7 from "../assets/images/adult3.jpg";
+import adult8 from "../assets/images/adult3.jpg";
+import adult9 from "../assets/images/adult3.jpg";
+import adult10 from "../assets/images/adult3.jpg";
 import kids1 from "../assets/images/kids1.webp";
 import kids2 from "../assets/images/kids2.webp";
 import kids3 from "../assets/images/kids3.webp";
 import kids4 from "../assets/images/kids4.webp";
+import kid5 from "../assets/images/kid5.jpg";
 import torrus from "../assets/images/Torus_array.png";
 import styles from "./components.module.css";
 import { Canvas } from "@react-three/fiber";
@@ -318,30 +326,65 @@ const Home = () => {
                 src={kids4}
                 alt=""
               />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={kid5}
+                alt=""
+              />
             </div>
-            {/* <h2 className="text-5xl font-bold">For Adults</h2>
+            <h2 className="text-5xl font-bold">For Adults</h2>
             <div className="grid grid-cols-2 place-items-center justify-center gap-1 grid-flow-row w-[100%]">
               <img
                 className="w-[50%] rounded-md place-self-end"
-                src={kids1}
+                src={adult1}
                 alt=""
               />
               <img
                 className="w-[50%] rounded-md place-self-start"
-                src={kids2}
+                src={adult2}
                 alt=""
               />
               <img
                 className="w-[50%] rounded-md place-self-end"
-                src={kids3}
+                src={adult3}
                 alt=""
               />
               <img
                 className="w-[50%] rounded-md place-self-start"
-                src={kids4}
+                src={adult4}
                 alt=""
               />
-            </div> */}
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={adult5}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={adult6}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={adult7}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={adult8}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={adult9}
+                alt=""
+              />
+              <img
+                className="w-[50%] rounded-md place-self-start"
+                src={adult10}
+                alt=""
+              />
+            </div>
           </div>
           <section>
             <div class="howitworks-container">
