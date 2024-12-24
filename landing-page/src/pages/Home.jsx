@@ -273,7 +273,7 @@ const Home = () => {
               />
               <img
                 src={torrus}
-                className={`h-[80px] torrus aspect-auto fixed bottom-[10%] right-5 md:right-20 ${styles.float}`}
+                className={`h-[80px] torrus aspect-auto fixed bottom-[10%] hidden md:block right-20 ${styles.float}`}
               />
             </div>
           </div>
@@ -469,13 +469,15 @@ const Home = () => {
             );
           })}
         </section>
-        <button className={`${styles.pushable} m-10 self-center`}>
-          <span className={`${styles.front}`}>
-            <a target="_blank" href="https://app.hideousgifts.com">
-              Create Yours Today
-            </a>
-          </span>
-        </button>
+        <div className="w-full flex items-center justify-center">
+          <button className={`${styles.pushable} m-10 self-center`}>
+            <span className={`${styles.front}`}>
+              <a target="_blank" href="https://app.hideousgifts.com">
+                Create Yours Today
+              </a>
+            </span>
+          </button>
+        </div>
         <footer className=" p-5 justify-self-end bg-purple-950  w-full">
           <h3
             style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
