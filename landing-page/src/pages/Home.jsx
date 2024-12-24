@@ -292,7 +292,7 @@ const Home = () => {
           </div>
 
           <div className="flex flex-col items-center gap-10 z-50">
-            <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-[25px]">
+            <div className="w-[100%] max-w-[30rem] text-black text-center font-bold text-[35px]">
               {copy.heroDescription}
             </div>
             <button className={`${styles.pushable}`}>
@@ -469,6 +469,13 @@ const Home = () => {
             );
           })}
         </section>
+        <button className={`${styles.pushable} m-10`}>
+          <span className={`${styles.front}`}>
+            <a target="_blank" href="https://app.hideousgifts.com">
+              Create Yours Today
+            </a>
+          </span>
+        </button>
         <footer className=" p-5 justify-self-end bg-purple-950  w-full">
           <h3
             style={{ fontFamily: "'Fontdiner Swanky', cursive" }}
