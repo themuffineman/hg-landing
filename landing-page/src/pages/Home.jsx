@@ -326,11 +326,6 @@ const Home = () => {
                 src={kids4}
                 alt=""
               />
-              <img
-                className="w-[50%] rounded-md place-self-end"
-                src={kid5}
-                alt=""
-              />
             </div>
             <h2 className="text-5xl font-bold">For Adults</h2>
             <div className="grid grid-cols-2 place-items-center justify-center gap-1 grid-flow-row w-[100%]">
