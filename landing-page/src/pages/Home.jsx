@@ -371,7 +371,7 @@ const Home = () => {
                       Terms of service
                     </a>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="/privacy" tabIndex={"_blank"}>
+                    <a href="privacy" tabIndex={"_blank"}>
                       Privacy Policy
                       </a>
                   </li>
