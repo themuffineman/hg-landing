@@ -4,7 +4,7 @@ const Terms = () => {
   return (
     <div className="flex flex-col gap-2">
       <h1 className="text-2xl font-bold">Terms of Service</h1>
-      <p>
+      <p className="overflow-scroll h-[90%]">
         1. Introduction Welcome to Dawn Era Digital DBA Hideous Gifts ('we,'
         'our,' or 'us'). These Terms of Service ('Terms') govern your access to
         and use of our website, applications, and related services
