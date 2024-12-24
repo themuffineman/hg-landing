@@ -2,9 +2,9 @@ import React from "react";
 
 const Privacy = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 p-10">
       <h1 className="text-2xl font-bold">Privacy Policy</h1>
-      <p className="overflow-scroll h-[90%]">
+      <p className="overflow-scroll h-[90%] p-5">
         "Privacy Policy for Dawn Era Digital Inc. DBA Hideous Gifts Effective
         Date: Dec 1, 2024 Last Updated: Dec 1, 2024 At Hideous Gifts, protecting
         your privacy is our priority. This Privacy Policy explains how we
