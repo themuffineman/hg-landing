@@ -269,7 +269,7 @@ const Home = () => {
 
               <img
                 src={santStanding}
-                className={`h-[80px] aspect-auto fixed top-[30%] right-20 ${styles.float}`}
+                className={`h-[80px]  aspect-auto fixed top-[30%] right-10 md:right-20 ${styles.float}`}
               />
               <img
                 src={torrus}
