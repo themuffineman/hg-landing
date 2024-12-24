@@ -509,17 +509,17 @@ const Home = () => {
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href=".terms" tabIndex={"_blank"}>
+                    <a href="/terms" tabIndex={"_blank"}>
                       Terms of service
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="privacy" tabIndex={"_blank"}>
+                    <a href="/privacy" tabIndex={"_blank"}>
                       Privacy Policy
                     </a>
                   </li>
                   <li className=" hover:underline text-sm text-white">
-                    <a href="contact" tabIndex={"_blank"}>
+                    <a href="/contact" tabIndex={"_blank"}>
                       Contact Us
                     </a>
                   </li>
