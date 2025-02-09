@@ -38,7 +38,7 @@ const Home = () => {
   const CardContainer = useRef(null);
   const cardRefs = useRef([]);
   const [searchParams] = useSearchParams();
-  const params = Object.fromEntries(searchParams.entries());
+  const params = searchParams.toString();
   const destinationURL = `https://app.hideousgifts.com${
     params ? `?${params}` : ""
   }`;
