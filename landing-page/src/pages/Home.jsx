@@ -29,6 +29,7 @@ import { useGSAP } from "@gsap/react";
 import { copy } from "../../websiteCopy/copy";
 import { images } from "../../cardImages/cardImages";
 import "./globals.css";
+import { useSearchParams } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 const Home = () => {
@@ -36,6 +37,11 @@ const Home = () => {
   const container = useRef(null);
   const CardContainer = useRef(null);
   const cardRefs = useRef([]);
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries(searchParams.entries());
+  const destinationURL = `https://app.hideousgifts.com${
+    params ? `?${params}` : ""
+  }`;
   const POV = window.innerWidth < 500 ? 100 : 75;
 
   useEffect(() => {
@@ -89,11 +95,9 @@ const Home = () => {
 
     scrollContainer.addEventListener("scroll", rotateElement);
   }
-
   useEffect(() => {
     addScrollRotationListener();
   }, []);
-
   useGSAP(() => {
     const cards = cardRefs.current;
     const isMobile = window.innerWidth <= 800;
@@ -297,7 +301,7 @@ const Home = () => {
             </div>
             <button className={`${styles.pushable}`}>
               <span className={`${styles.front}`}>
-                <a target="_blank" href="https://app.hideousgifts.com">
+                <a target="_blank" href={destinationURL}>
                   Create Yours Today
                 </a>
               </span>
@@ -472,7 +476,7 @@ const Home = () => {
         <div className="w-full flex items-center justify-center">
           <button className={`${styles.pushable} m-10 self-center`}>
             <span className={`${styles.front}`}>
-              <a target="_blank" href="https://app.hideousgifts.com">
+              <a target="_blank" href={destinationURL}>
                 Create Yours Today
               </a>
             </span>
